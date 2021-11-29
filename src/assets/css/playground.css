@@ -1,0 +1,71 @@
+.Playground {
+  font-family: Helvetica, Arial, sans-serif;
+  max-width: 100%;
+  padding: 20px, 20px, 20px, 20px;
+  overflow: scroll;
+  background-color: #F3F6F9;
+  padding-bottom: 200px;
+  height:100%;
+}
+
+.playground-link {
+  padding: 20px;
+  color: white;
+  font: caption;
+  font-weight: bold;
+}
+
+.ContactItemPlayground {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  color: #F3F6F9;
+  background-color: #412d48;
+  text-align: center;
+  border-radius: 1em;
+  padding: 20px;
+}
+
+.playground-header {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  color:#F3F6F9;
+  text-align:center;
+  border-radius: 1em;
+}
+
+.caption {
+  margin-top:60px;
+  margin-bottom: 60px;
+}
+
+.caption-text {
+  background-color:black;
+  color:white;
+  padding: 0.25em 1em;
+  border-radius: 1em;
+}
+
+.radio-button-playground {
+  text-align: left;
+  color:black;
+}
+
+.storedValue {
+  color: #F3F6F9;
+  background-color: #9c27b0;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 1em;
+  padding: 5px;
+  width:120px;
+}
+
+.basic-tooltip {
+  color: #F3F6F9;
+  background-color: #9c27b0;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 1em;
+  padding: 5px;
+  width:120px;
+}

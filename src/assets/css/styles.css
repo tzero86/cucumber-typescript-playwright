@@ -1,0 +1,173 @@
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background: #412d48;
+}
+
+.item-value {
+  padding-left:5px;
+}
+
+.contacts {
+  font-size: xxx-large;
+  margin-top: 40px;
+  color:white;
+}
+
+.testing-talks-logo {
+  background-image: url(./images/desktop-header-logo.png);
+  background-repeat: no-repeat;
+  width: 330px;
+  height: 50px;
+  display: block;
+}
+
+@media only screen and (max-width: 600px) {
+  .testing-talks-logo {
+    background-image: url(./images/mobile-header-logo.png);
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+  }
+}
+
+.create-contact {
+  margin-top: 40px;
+  color:white;
+}
+
+.edit-contact {
+  margin-top: 40px;
+  color:white;
+}
+
+.App {
+  font-family: Helvetica, Arial, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.App h1 {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.App button {
+  border: 0;
+  background: #ddd;
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.App button:hover {
+  filter: brightness(90%);
+}
+
+.ContactList {
+  text-align: left;
+  max-width: 400px;
+  padding-top:50px;
+  margin: 8px;
+  flex-grow: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ContactListSearch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.ContactListItems {
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.ContactListSearch input {
+  flex-grow: 1;
+  font-size: 14px;
+  padding: 7px;
+  width: 200px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.ContactItem, .ContactForm {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.ContactItem p {
+  margin-top: 0px;
+  margin-bottom: 4px;
+}
+
+.App .ContactListAdd {
+  margin-left: 8px;
+  margin-right: 0px;
+  background: #569cff;
+  color: white;
+  padding: 8px 16px;
+}
+
+.ContactItemEdit {
+  margin-right: 8px;
+}
+
+.ContactFormField {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.ContactFormField label {
+  width: 100px;
+  display: inline-block;
+  line-height: 33px;
+}
+
+.ContactFormField input {
+  font-size: 14px;
+  padding: 7px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.ContactFormField select {
+  font-size: 14px;
+  padding: 7px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+
+.ContactFormButtons {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.FormError {
+  color: red;
+}
