@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect} from "react";
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Routes ,Route} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/styles.css';
 import './assets/css/playground.css';
@@ -60,14 +60,14 @@ class App extends React.Component {
     return (
       <BrowserRouter>
       {this.renderNavBar()}
-          <Routes>
+          <Switch>
             <Route exact path="/" component={this.renderList} />
             <Route exact path="/tasks" component={this.renderList} />
             <Route exact path="/tasks/create" component={this.renderCreateForm} />
             <Route exact path="/tasks/:id/edit" component={this.renderEditForm} />
             <Route exact path="/playground" component={this.renderPlaygroundForm} />
             <Route component={this.render404} />
-          </Routes>
+          </Switch>
       </BrowserRouter>
     );
   }
@@ -77,6 +77,7 @@ class App extends React.Component {
   }
 
   renderList = ({history}) => {
+
     return (
       <>
         <div className="App">
@@ -122,6 +123,7 @@ class App extends React.Component {
   };
 
   renderCreateForm = ({history}) => {
+
     return (
       <>
         <div className="App">
@@ -137,6 +139,7 @@ class App extends React.Component {
   };
 
   renderEditForm = ({history, match}) => {
+
     const id = match.params.id;
     const contact = this.state.contacts.find(contact => contact.id === id);
     if (!contact) {
@@ -159,6 +162,7 @@ class App extends React.Component {
   };
 
   renderPlaygroundForm = () => {
+
     return (
       <>
       <div className="Playground">
