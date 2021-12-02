@@ -1,4 +1,5 @@
-import React, { useEffect} from "react";
+import React from "react";
+import { Helmet } from 'react-helmet'
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -80,6 +81,9 @@ class App extends React.Component {
 
     return (
       <>
+        <Helmet>
+            <title>Contacts</title>
+        </Helmet>
         <div className="App">
             <h1 className="contacts" data-id="contacts">Contacts</h1>
             {this.renderErrorState()}
@@ -126,6 +130,9 @@ class App extends React.Component {
 
     return (
       <>
+        <Helmet>
+            <title>Create Contact</title>
+        </Helmet>
         <div className="App">
         <h1 className="create-contact">Create Contact</h1>
         <ContactForm
@@ -149,6 +156,9 @@ class App extends React.Component {
     }
     return (
       <>
+      <Helmet>
+          <title>Edit Contact</title>
+      </Helmet>
       <div className="App">
         <h1 className="edit-contact">Edit Contact</h1>
         <ContactForm
@@ -165,6 +175,9 @@ class App extends React.Component {
 
     return (
       <>
+        <Helmet>
+            <title>Playground</title>
+        </Helmet>
       <div className="Playground">
       <h1 className="playground-header">Playground</h1>
 
