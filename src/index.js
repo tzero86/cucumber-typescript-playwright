@@ -30,6 +30,7 @@ import {BasicStoredValues} from './components/BasicStoredValues.react'
 import {BasicIndex} from './components/BasicIndex.react'
 import {BasicValues} from './components/BasicValues.react'
 import {BasicInputValues} from './components/BasicInputValues.react'
+import {BasicLogin} from './components/BasicLogin.react'
 
 import {
  Navbar,
@@ -365,6 +366,14 @@ class App extends React.Component {
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicInputValues />
+               </div>
+           </div>
+           <div className="col-xs-6 col-md-4">
+               <div className="caption">
+                   <h6><span className="caption-text">Login</span></h6>
+               </div>
+               <div className="product tumbnail thumbnail-3">
+                   <BasicLogin />
                </div>
            </div>
        </div>
