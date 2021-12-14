@@ -56,6 +56,7 @@ export class BasicLogin extends React.Component {
               <div
                 style={{ marginTop: '-1.5em' }}
                 className="mui--text-caption mui--text-danger"
+                data-id="email-error"
               >
                 {errors.email}
               </div>
@@ -77,6 +78,7 @@ export class BasicLogin extends React.Component {
               <div
                 style={{ marginTop: '-1.5em' }}
                 className="mui--text-caption mui--text-danger"
+                data-id="password-error"
               >
                 {errors.password}
               </div>
