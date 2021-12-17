@@ -28,7 +28,7 @@ export class BasicLogin extends React.Component {
   onInput = e => {
     const errors = { ...this.state.errors }
     if (e.target.validationMessage && e.target.validationMessage !== '') {
-      errors[e.target.name] = e.target.validationMessage
+      errors[e.target.name] = "Please include an '@' in the email address."
     } else {
       delete errors[e.target.name]
     }
