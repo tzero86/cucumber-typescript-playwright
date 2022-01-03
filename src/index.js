@@ -31,6 +31,7 @@ import {BasicIndex} from './components/BasicIndex.react'
 import {BasicValues} from './components/BasicValues.react'
 import {BasicInputValues} from './components/BasicInputValues.react'
 import {BasicLogin} from './components/BasicLogin.react'
+import {BasicREST} from './components/BasicREST.react'
 
 import {
  Navbar,
@@ -106,6 +107,7 @@ class App extends React.Component {
             <Container>
                 <div className="playground-link">
                 <a
+                  data-id="header-logo"
                   className="testing-talks-logo"
                   href="/"
                 >
@@ -135,7 +137,7 @@ class App extends React.Component {
             <title>Create Contact</title>
         </Helmet>
         <div className="App">
-        <h1 className="create-contact">Create Contact</h1>
+        <h1 data-id='create-contact-header' className="create-contact">Create Contact</h1>
         <ContactForm
           contact={null}
           onSave={contact => this.onCreate(contact, history)}
@@ -374,6 +376,14 @@ class App extends React.Component {
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicLogin />
+               </div>
+           </div>
+           <div className="col-xs-6 col-md-4">
+               <div className="caption">
+                   <h6><span className="caption-text">Basic REST</span></h6>
+               </div>
+               <div className="product tumbnail thumbnail-3 rest-name">
+                   <BasicREST />
                </div>
            </div>
        </div>
