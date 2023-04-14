@@ -18,7 +18,8 @@ Before(async () => {
     global.page = await global.context.newPage()
 })
 
+
 After(async () => {
     await global.page.close()
-    //await global.context.close()
+    await global.context.close()
 })
