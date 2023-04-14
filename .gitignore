@@ -24,3 +24,4 @@ yarn-error.log*
 
 
 /e2e/node_modules
+/e2e/reports
