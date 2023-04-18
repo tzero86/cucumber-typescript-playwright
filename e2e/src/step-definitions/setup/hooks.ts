@@ -21,9 +21,10 @@ After(async function (this: ScenarioWorld, scenario) {
     } = this
     const scenarioStatus = scenario.result?.status
     if (scenarioStatus === 'FAILED') {
-        await page.screenshot({
+        const screenshot = await page.screenshot({
             path: `${env('SCREENSHOT_PATH')}${scenario.pickle.name}.png`
         })
+        await this.attach(screenshot, 'image/png')
     }
 
     await browser.close()
