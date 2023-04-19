@@ -1,6 +1,7 @@
 import playwright, { BrowserContextOptions, Page, Browser, BrowserContext,BrowserType } from "playwright"
 import { World, IWorldOptions, setWorldConstructor } from "@cucumber/cucumber"
 import { env } from "../../env/parseEnv"
+import { GlobalConfig } from "../../env/global"
 
 export type Screen = {
     browser: Browser
@@ -11,8 +12,10 @@ export type Screen = {
 export class ScenarioWorld extends World {
     constructor(options: IWorldOptions) {
         super(options)
+        this.globalConfig = options.parameters as GlobalConfig
     }
 
+    globalConfig: GlobalConfig
     screen!: Screen;
 
     async init(contextOptions?: BrowserContextOptions): Promise<Screen> {
@@ -36,7 +39,7 @@ export class ScenarioWorld extends World {
         const browser = await browserType.launch({
             headless: process.env.HEADLESS !== 'false',
             args: [
-                '--disable-web-security', '--disable-features=IsolateOrigins,site-per-process'],
+                '--disable-web-security', '--disable-features=IsolateOrigins, site-per-process'],
         })
         return browser
     }
