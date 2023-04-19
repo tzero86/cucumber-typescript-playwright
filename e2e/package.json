@@ -7,8 +7,8 @@
     "transpile": "rimraf dist && babel --extensions .ts --out-dir dist src",
     "cucumber-compile": "yarn transpile && cucumber-js",
     "precucumber": "rimraf reports && mkdir reports && echo {} > reports/reports.json",
-    "cucumber": "cross-env COMMON_CONFIG_FILE=env/common.env yarn cucumber-compile",
-    "postcucumber": "cross-env COMMON_CONFIG_FILE=env/common.env ts-node ./src/reporter/cucumber-report.ts"
+    "cucumber": "yarn cucumber-compile",
+    "postcucumber": "ts-node ./src/reporter/cucumber-report.ts"
   },
   "author": "",
   "license": "ISC",
