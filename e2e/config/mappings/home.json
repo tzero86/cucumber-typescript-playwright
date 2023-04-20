@@ -1,3 +1,4 @@
 {
-    "contacts header": "[data-id='contacts']"
+    "contacts header": "[data-id='contacts']",
+    "create": "[data-id='add-button']"
 }

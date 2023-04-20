@@ -11,11 +11,10 @@ Then(
     async function (this: ScenarioWorld, elementKey: ElementKey, expectedElementText: string) {
         const {
             screen: { page },
-            globalVariables,
             globalConfig
         } = this
         console.log(`The ${elementKey} should contain the text ${expectedElementText}`)
-        const elementIdentifier = getElementLocator(page, elementKey, globalVariables, globalConfig)
+        const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         await waitFor(async () => {
             const elementText = await page.textContent(elementIdentifier)
             return elementText?.includes(expectedElementText)

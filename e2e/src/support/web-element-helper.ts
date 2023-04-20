@@ -1,14 +1,14 @@
 import { Page } from "playwright"
-import  { GlobalConfig, ElementKey, ElementLocator, GlobalVariables } from "../env/global"
+import  { GlobalConfig, ElementKey, ElementLocator } from "../env/global"
+import { getCurrentPageId } from "./navigation-behavior"
 
 
 export const getElementLocator = (
     page: Page,
     elementKey: ElementKey,
-    globalVariables: GlobalVariables,
     globalConfig: GlobalConfig
 ): ElementLocator => {
+    const currentPage = getCurrentPageId(page, globalConfig)
     const {  pageElementMappings } = globalConfig
-    const currentPage = globalVariables.currentScreen
     return pageElementMappings[currentPage]?.[elementKey] || pageElementMappings.common?.[elementKey]
 }
