@@ -17,7 +17,7 @@ Feature: As a user I expect to be able to create contacts
 
         And I am directed to the "home" page
         And I fill in the "search" input with "John Saurio"
-        And the "name label" should contain the text "Name:"
+        And the "full name label" should contain the text "Name:"
         And the "name" should contain the text "John Saurio"
         And the "gender label" should contain the text "Gender:"
         And the "gender" should contain the text "Male"
