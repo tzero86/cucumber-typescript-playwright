@@ -13,7 +13,7 @@ Then(
             screen: { page },
             globalConfig
         } = this
-        console.log(`The ${elementKey} should be displayed`)
+        console.log(`👁️ The ${elementKey} should be displayed`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         
         await waitFor(async () => {
