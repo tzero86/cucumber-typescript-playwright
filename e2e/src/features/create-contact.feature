@@ -1,6 +1,5 @@
 Feature: As a user I expect to be able to create contacts
 
-    @dev
     @smoke
     @regression
     Scenario: as a User I expect to be able to create a new contact
@@ -14,7 +13,6 @@ Feature: As a user I expect to be able to create contacts
         And I fill in the "street" input with "123 Main St"
         And I fill in the "city" input with "New York"
         And I click the "save" button
-
         And I am directed to the "home" page
         And I fill in the "search" input with "John Saurio"
         And the "full name label" should contain the text "Name:"

@@ -6,7 +6,7 @@ export class ContactItem extends React.Component {
     return (
       <div className="ContactItem" data-id="contact">
         <p data-id="full-name-label">
-            Name:<strong className="item-value" data-id="name">{item.name}</strong>
+            Name:<strong className="item-value" data-id="name">{item.name}s</strong>
         </p>
         <p data-id="gender-label">
             Gender:<strong className="item-value" data-id="gender">{item.gender}</strong>

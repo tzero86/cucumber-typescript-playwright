@@ -6,5 +6,6 @@
     "street": "[data-id='street']",
     "city": "[data-id='city']",
     "save": "[data-id='save-button']",
-    "cancel": "[data-id='cancel-button']"
+    "cancel": "[data-id='cancel-button']",
+    "playground": "[data-id='playground-button']"
 }
