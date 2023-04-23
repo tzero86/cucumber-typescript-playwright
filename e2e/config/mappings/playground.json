@@ -1,3 +1,4 @@
 {
-    
+    "female": "[data-id='female-radio-button']",
+    "male":  "[data-id='male-radio-button']"
 }

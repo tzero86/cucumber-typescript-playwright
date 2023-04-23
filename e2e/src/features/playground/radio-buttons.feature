@@ -8,4 +8,5 @@ Feature: As a user I can interact with radio buttons.
         And the "playground" should be displayed
         And I click the "playground" button
         Then I am directed to the "playground" page
+        And the "female" radio button should be checked
         
