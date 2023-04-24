@@ -2,5 +2,7 @@
     "female": "[value='female']",
     "female radio button label": "[data-id='female-radio-button']",
     "male": "[value='male']",
-    "male radio button label":  "[data-id='male-radio-button']"
+    "male radio button label":  "[data-id='male-radio-button']",
+    "movies": "[id='movies-input']",
+    "the godfather": "//li[text()='The Godfather']"
 }
