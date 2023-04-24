@@ -1,8 +1,11 @@
 {
     "female": "[value='female']",
-    "female radio button label": "[data-id='female-radio-button']",
+    "female label": "[data-id='female-radio-button']",
     "male": "[value='male']",
-    "male radio button label":  "[data-id='male-radio-button']",
+    "male label":  "[data-id='male-radio-button']",
     "movies": "[id='movies-input']",
-    "the godfather": "//li[text()='The Godfather']"
+    "the godfather": "//li[text()='The Godfather']",
+    "outlined required": "[id='outlined-required']",
+    "outlined disabled": "[id='outlined-disabled']",
+    "outlined read only": "[id='outlined-read-only-input']"
 }

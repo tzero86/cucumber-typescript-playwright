@@ -7,10 +7,10 @@ Feature: As a user I can interact with radio buttons.
         And the "playground" should be displayed
         And I click the "playground" button
         Then I am directed to the "playground" page
-        And the "female radio button label" should not contain the text "Male"
+        And the "female label" should not contain the text "Male"
         And the "female" radio button should be checked
         And the "male" radio button should not be checked
-        And the "male radio button label" should not contain the text "Female"
+        And the "male label" should not contain the text "Female"
         Then I check the "male" radio button
         And the "male" radio button should be checked
         And the "female" radio button should not be checked
