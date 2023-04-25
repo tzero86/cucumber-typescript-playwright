@@ -9,5 +9,11 @@
     "cancel": "[data-id='cancel-button']",
     "playground": "[data-id='playground-button']",
     "search": "[data-id='search']",
-    "contact": "[data-id='contact']"
+    "contact": "[data-id='contact']",
+    "full name label": "[data-id='full-name-label']",
+    "gender label": "[data-id='gender-label']",
+    "address label": "[data-id='address-label']",
+    "address": "[data-id='address']",
+    "edit": "[data-id='edit-button']",
+    "delete": "[data-id='delete-button']"
 }
