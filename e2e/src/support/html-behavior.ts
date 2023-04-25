@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test"
+import { Frame, Page } from "@playwright/test"
 import { ElementLocator } from "../env/global"
 
 
@@ -112,4 +112,43 @@ export const getValue = async (
         return el.value
     })
     return value
+}
+
+
+/**
+ * This TypeScript function returns the content frame of an iframe element identified by a given
+ * selector on a web page.
+ * @param {Page} page - The Playwright Page object representing the current web page.
+ * @param {ElementLocator} iframeIdentifier - The identifier used to locate the iframe element on the
+ * page. It could be a CSS selector, XPath expression, or any other valid method of locating elements
+ * on a web page.
+ * @returns a Promise that resolves to either a Frame object, undefined, or null.
+ */
+export const getIframeElement = async (
+    page: Page,
+    iframeIdentifier: ElementLocator,
+): Promise<Frame | undefined | null> => {
+    await page.waitForSelector(iframeIdentifier)
+    const elementHandle = await page.$(iframeIdentifier)
+    const elementIframe = await elementHandle?.contentFrame()
+    return elementIframe
+}
+
+
+/**
+ * This TypeScript function inputs a given value into a specified element within an iframe.
+ * @param {Frame} elementIframe - This is a variable representing an iframe element on a webpage.
+ * @param {ElementLocator} elementIdentifier - ElementLocator is a type that represents a way to locate
+ * an element on a web page. It could be a CSS selector, an XPath expression, or any other method of
+ * identifying an element. The elementIdentifier parameter in this function is the specific identifier
+ * used to locate the element within the iframe.
+ * @param {string} inputValue - The value that will be inputted into the specified element on the
+ * iframe.
+ */
+export const inputValueOnIframe = async (
+    elementIframe: Frame,
+    elementIdentifier: ElementLocator,
+    inputValue: string
+): Promise<void> => {
+    await elementIframe.fill(elementIdentifier, inputValue)
 }
