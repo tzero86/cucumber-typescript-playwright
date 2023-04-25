@@ -9,5 +9,10 @@
     "outlined disabled": "[id='outlined-disabled']",
     "outlined read only": "[id='outlined-read-only-input']",
     "outlined error": "[id='outlined-error-helper-text-label']",
-    "outlined error label": "[id='outlined-error-helper-text-helper-text']"
+    "outlined error label": "[id='outlined-error-helper-text-helper-text']",
+    "blue": "[data-id='blue-radio-button']",
+    "purple": "[data-id='purple-radio-button']",
+    "green": "[data-id='green-radio-button']",
+    "grey": "[data-id='grey-radio-button']",
+    "red": "[data-id='red-radio-button']"
 }
