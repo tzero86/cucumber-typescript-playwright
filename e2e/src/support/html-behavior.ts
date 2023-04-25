@@ -73,6 +73,24 @@ export const checkElement = async (
 
 
 /**
+ * This TypeScript function focuses on an element and unchecks it.
+ * @param {Page} page - The page object represents a single tab or window in a web browser and provides
+ * methods to interact with the web page loaded in that tab or window.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents the CSS selector or XPath expression used to locate the HTML element on the web page. It
+ * is used by the Playwright library to interact with the element.
+ */
+export const uncheckElement = async (
+    page: Page,
+    elementIdentifier: ElementLocator
+): Promise<void> => {
+    await page.focus(elementIdentifier)
+    await page.uncheck(elementIdentifier)
+}
+
+
+
+/**
  * This TypeScript function retrieves the value of a specified HTML select element on a given page.
  * @param {Page} page - The page parameter is of type Page, which is likely a reference to a Playwright
  * Page object. This object represents a single tab or window in a browser and provides methods for
