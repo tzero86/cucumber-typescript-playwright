@@ -2,6 +2,14 @@ import { Page } from "@playwright/test"
 import { ElementLocator } from "../env/global"
 
 
+/**
+ * This TypeScript function clicks on a specified element on a web page.
+ * @param {Page} page - The page object represents a single tab or window in a web browser and provides
+ * methods to interact with the page's content.
+ * @param {ElementLocator} elementIdentifier - The `elementIdentifier` parameter is a string that
+ * represents a CSS selector, XPath expression, or a unique identifier for an HTML element on a web
+ * page. It is used to locate the element that needs to be clicked.
+ */
 export const clickElement = async (
     page: Page,
     elementIdentifier: ElementLocator
@@ -10,6 +18,16 @@ export const clickElement = async (
 }
 
 
+/**
+ * This TypeScript function fills an input field on a web page with a given value.
+ * @param {Page} page - The page object represents a single tab or window in a web browser and provides
+ * methods to interact with the web page loaded in that tab or window.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents a CSS selector or an XPath expression used to locate a specific element on a web page. It
+ * is used by the function to focus on the element and fill it with the provided input.
+ * @param {string} input - The input parameter is a string that represents the text that needs to be
+ * entered into the specified element on the web page.
+ */
 export const inputValue = async (
     page: Page,
     elementIdentifier: ElementLocator,
@@ -20,6 +38,14 @@ export const inputValue = async (
 }
 
 
+/**
+ * This TypeScript function selects a specified option from a dropdown menu on a web page.
+ * @param {Page} page - The Playwright Page object that represents the current page being automated.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents the CSS selector or XPath expression used to locate the HTML element on the page. It is
+ * used to identify the element on which the selectValue function will be performed.
+ * @param {string} option - The value of the option that needs to be selected from the dropdown list.
+ */
 export const selectValue = async (
     page: Page,
     elementIdentifier: ElementLocator,
@@ -29,6 +55,14 @@ export const selectValue = async (
     await page.selectOption(elementIdentifier, option)
 }
 
+/**
+ * This TypeScript function checks a specified element on a web page.
+ * @param {Page} page - The page object represents a single tab or window in a web browser and provides
+ * methods to interact with the page's content.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents the CSS selector or XPath expression used to locate the element on the web page. It is
+ * used by the function to focus on the element and check it.
+ */
 export const checkElement = async (
     page: Page,
     elementIdentifier: ElementLocator
@@ -38,6 +72,19 @@ export const checkElement = async (
 }
 
 
+/**
+ * This TypeScript function retrieves the value of a specified HTML select element on a given page.
+ * @param {Page} page - The page parameter is of type Page, which is likely a reference to a Playwright
+ * Page object. This object represents a single tab or window in a browser and provides methods for
+ * interacting with the page's content and functionality.
+ * @param {ElementLocator} elementIdentifier - ElementLocator is a type that represents a string that
+ * can be used to locate an element on a web page. It can be a CSS selector, an XPath expression, or
+ * any other valid method of locating an element. In this case, it is used to locate an
+ * HTMLSelectElement on the page.
+ * @returns The `getValue` function returns a Promise that resolves to a string or null value. The
+ * string value is the `value` property of the HTMLSelectElement identified by the `elementIdentifier`
+ * parameter. If the element is not found, the function returns null.
+ */
 export const getValue = async (
     page: Page,
     elementIdentifier: ElementLocator   
