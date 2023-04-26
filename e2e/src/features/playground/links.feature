@@ -1,6 +1,6 @@
 Feature: As a user I can interact with links.
 
-    @dev
+    
     @smoke
     @regression
     Scenario: As a user I can interact and assert on links

@@ -175,3 +175,27 @@ export const inputValueOnPage = async (
     await pages[pageIndex].focus(elementIdentifier)
     await pages[pageIndex].fill(elementIdentifier, inputValue)
 }
+
+
+/**
+ * This TypeScript function clicks on a specific element at a given position on a web page.
+ * @param {Page} page - The page object represents the current web page that is being automated.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents the CSS selector or XPath expression used to locate the element on the web page.
+ * @param {number} elementPosition - The elementPosition parameter is a number that represents the
+ * position of the element to be clicked within a list of elements that match the given
+ * elementIdentifier. For example, if there are 5 elements that match the identifier and
+ * elementPosition is set to 3, then the function will click on the third element
+ */
+export const clickElementAtIndex = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+    elementPosition: number
+): Promise <void> => {
+    const elements = await page.$$(elementIdentifier)
+    if (elementPosition >= elements.length) {
+        throw new Error(`Element index ${elementPosition} is out of range, you are trying to click a non-existent element.`)
+    }
+    const element = elements[elementPosition]
+    await element?.click()
+}
