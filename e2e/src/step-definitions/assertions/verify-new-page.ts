@@ -5,16 +5,18 @@ import { waitFor } from "../../support/wait-for-behavior"
 import { getElementLocator } from "../../support/web-element-helper"
 
 
+const NEW_TAB_TIMEOUT: number = 300;
+
 Then(
-    /^the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" tab should( not)? contain the title "(.*)"$/,
+    /^the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" (?:tab|window) should( not)? contain the title "(.*)"$/,
     async function (this: ScenarioWorld, tabNumber: ElementKey, negate: boolean, expectedTabTitle: string) {
         const {
             screen : {page, context},
         } = this
 
-        console.log(`the ${tabNumber} tab should${negate ? " not" : ""} contain the title ${expectedTabTitle}`)
+        console.log(`the ${tabNumber} tab|window should${negate ? " not" : ""} contain the title ${expectedTabTitle}`)
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
-        await page.waitForTimeout(1000)
+        await page.waitForTimeout(NEW_TAB_TIMEOUT)
 
         await waitFor(async () => {
             let pages = context.pages()
@@ -26,17 +28,17 @@ Then(
 
 
 Then(
-    /^the "([^"]*)" on the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" tab should( not)? be displayed$/,
+    /^the "([^"]*)" on the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" (?:tab|window) should( not)? be displayed$/,
     async function (this: ScenarioWorld, elementKey: ElementKey, tabNumber: ElementKey, negate: boolean) {
         const {
             screen: {page, context},
             globalConfig
         } = this
 
-        console.log(`the ${elementKey} on the ${tabNumber} tab should${negate ? " not" : ""} be displayed`)
+        console.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} be displayed`)
 
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
-        await page.waitForTimeout(1000)
+        await page.waitForTimeout(NEW_TAB_TIMEOUT)
 
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
@@ -50,17 +52,17 @@ Then(
 
 
 Then(
-    /^the "([^"]*)" on the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" tab should( not)? contain the text "(.*)"$/,
+    /^the "([^"]*)" on the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" (?:tab|window) should( not)? contain the text "(.*)"$/,
     async function (this: ScenarioWorld, elementKey: ElementKey, tabNumber: ElementKey, negate: boolean, expectedText: string) {
         const {
             screen: {page, context},
             globalConfig
         } = this
 
-        console.log(`the ${elementKey} on the ${tabNumber} tab should${negate ? " not" : ""} contain the text ${expectedText}`)
+        console.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} contain the text ${expectedText}`)
 
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
-        await page.waitForTimeout(1000)
+        await page.waitForTimeout(NEW_TAB_TIMEOUT)
 
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
@@ -73,24 +75,24 @@ Then(
 )
 
 Then(
-    /^the "([^"]*)" on the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" tab should( not)? equal the text "(.*)"$/,
+    /^the "([^"]*)" on the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" (?:tab|window) should( not)? equal the text "(.*)"$/,
     async function (this: ScenarioWorld, elementKey: ElementKey, tabNumber: ElementKey, negate: boolean, expectedText: string) {
         const {
             screen: {page, context},
             globalConfig
         } = this
 
-        console.log(`the ${elementKey} on the ${tabNumber} tab should${negate ? " not" : ""} equal the text ${expectedText}`)
+        console.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} equal the text ${expectedText}`)
 
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
-        await page.waitForTimeout(1000)
+        await page.waitForTimeout(NEW_TAB_TIMEOUT)
 
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {
             let pages = context.pages()
             const elementText = await pages[pageIndex].textContent(elementIdentifier)
-            return elementText === expectedText !== negate
+            return (elementText === expectedText) === !negate
         })
     }
 )
