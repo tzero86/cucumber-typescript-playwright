@@ -152,3 +152,26 @@ export const inputValueOnIframe = async (
 ): Promise<void> => {
     await elementIframe.fill(elementIdentifier, inputValue)
 }
+
+
+/**
+ * This TypeScript function fills an input element on a specific page with a given value.
+ * @param pages - an array of Page objects representing the pages in the application
+ * @param {number} pageIndex - The index of the page in the `pages` array where the element to be
+ * filled with `inputValue` is located. The index starts from 0.
+ * @param {ElementLocator} elementIdentifier - ElementLocator is a type that represents a way to locate
+ * an element on a web page. It can be a CSS selector, an XPath expression, or a combination of tag
+ * name and attribute values. The elementIdentifier parameter in the inputValueOnPage function is the
+ * specific ElementLocator that identifies the element on the
+ * @param {string} inputValue - The value that needs to be inputted into the specified element on the
+ * page.
+ */
+export const inputValueOnPage = async (
+    pages: Array<Page>,
+    pageIndex: number,
+    elementIdentifier: ElementLocator,
+    inputValue: string
+): Promise <void> => {
+    await pages[pageIndex].focus(elementIdentifier)
+    await pages[pageIndex].fill(elementIdentifier, inputValue)
+}
