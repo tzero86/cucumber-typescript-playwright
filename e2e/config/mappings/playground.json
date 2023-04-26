@@ -17,5 +17,8 @@
     "red": "[data-id='red-radio-button']",
     "basic iframe": "[id='basic-iframe']",
     "new tab": "[data-id='new-tab-button']",
-    "open window": "[data-id='open-window-button']"
+    "open window": "[data-id='open-window-button']",
+    "primary": "[data-id='primary-button']",
+    "secondary": "[data-id='secondary-button']",
+    "third": "[data-id='third-button']"
 }
