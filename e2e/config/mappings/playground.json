@@ -21,5 +21,6 @@
     "primary": "[data-id='primary-button']",
     "secondary": "[data-id='secondary-button']",
     "third": "[data-id='third-button']",
-    "my button": "[data-id='my-button']"
+    "my button": "[data-id='my-button']",
+    "basic": "[data-id='basic-table']"
 }
