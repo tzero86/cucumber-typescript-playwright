@@ -19,6 +19,7 @@
     "@cucumber/cucumber": "^9.1.0",
     "@playwright/test": "^1.32.3",
     "cross-env": "^7.0.3",
+    "deep-diff": "^1.0.2",
     "dotenv": "^16.0.3",
     "playwright": "^1.32.3",
     "ts-node": "^10.9.1",
