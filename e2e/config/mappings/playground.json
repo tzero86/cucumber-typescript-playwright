@@ -31,5 +31,7 @@
     "info alert": "[data-id='info-alert']",
     "success alert": "[data-id='success-alert']",
     "tooltip": "[data-id='tooltip']",
-    "textarea": "[data-id='textarea']"
+    "textarea": "[data-id='textarea']",
+    "show hide": "[data-id='show-hide-button']",
+    "show hide text": "[data-id='show-hide-text']"
 }
