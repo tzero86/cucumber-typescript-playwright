@@ -24,5 +24,6 @@
     "my button": "[data-id='my-button']",
     "basic": "[data-id='basic-table']",
     "switch one": "[data-id='switch-one']",
-    "switch two": "[data-id='switch-two']"
+    "switch two": "[data-id='switch-two']",
+    "browser alert": "[data-id='browser-alert']"
 }
