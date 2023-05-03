@@ -29,5 +29,6 @@
     "error alert": "[data-id='error-alert']",
     "warning alert": "[data-id='warning-alert']",
     "info alert": "[data-id='info-alert']",
-    "success alert": "[data-id='success-alert']"
+    "success alert": "[data-id='success-alert']",
+    "tooltip": "[data-id='tooltip']"
 }

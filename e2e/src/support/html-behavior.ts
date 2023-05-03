@@ -199,3 +199,27 @@ export const clickElementAtIndex = async (
     const element = elements[elementPosition]
     await element?.click()
 }
+
+
+
+/**
+ * This TypeScript function retrieves the value of a specified attribute from a web page element.
+ * @param {Page} page - The Playwright Page object that represents the current web page being automated.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents a unique identifier for the HTML element on the page. It can be a CSS selector, an XPath
+ * expression, or any other valid locator strategy supported by the Playwright library. This parameter
+ * is used to locate the element on the page and retrieve its attribute value
+ * @param {string} attributeName - The name of the attribute whose value is to be retrieved from the
+ * element. For example, if you want to get the value of the "href" attribute of an anchor tag, you
+ * would pass "href" as the attributeName parameter.
+ * @returns The function `getAttributeText` returns a promise that resolves to a string or null value.
+ */
+export const getAttributeText = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+    attributeName: string
+
+): Promise<string | null> => {
+    const attributeText = await page.locator(elementIdentifier).getAttribute(attributeName)
+    return attributeText
+}
