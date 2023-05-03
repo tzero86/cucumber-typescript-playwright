@@ -30,5 +30,6 @@
     "warning alert": "[data-id='warning-alert']",
     "info alert": "[data-id='info-alert']",
     "success alert": "[data-id='success-alert']",
-    "tooltip": "[data-id='tooltip']"
+    "tooltip": "[data-id='tooltip']",
+    "textarea": "[data-id='textarea']"
 }
