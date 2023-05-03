@@ -8,14 +8,14 @@ import { checkElement, uncheckElement } from '../support/html-behavior'
 
 
 Then(
-    /^I (check)?(uncheck)? the "([^"]*)" (?:check box|radio button|)$/,
+    /^I (check)?(uncheck)? the "([^"]*)" (?:check box|radio button|switch)$/,
     async function(this: ScenarioWorld, checked: boolean, unchecked: boolean, elementKey: ElementKey) {
         const {
             screen: { page },
             globalConfig,
         } = this
 
-        console.log(`☑️ I ${unchecked?'uncheck ':'check'} the ${elementKey} check box|radio button`)
+        console.log(`☑️ I ${unchecked?'uncheck ':'check'} the ${elementKey} check box|radio button|switch`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {
