@@ -33,5 +33,10 @@
     "tooltip": "[data-id='tooltip']",
     "textarea": "[data-id='textarea']",
     "show hide": "[data-id='show-hide-button']",
-    "show hide text": "[data-id='show-hide-text']"
+    "show hide text": "[data-id='show-hide-text']",
+    "first value": "[data-id='first-value']",
+    "second value": "[data-id='second-value']",
+    "third value": "[data-id='third-value']",
+    "fourth value": "[data-id='fourth-value']",
+    "fifth value": "[data-id='fifth-value']"
 }

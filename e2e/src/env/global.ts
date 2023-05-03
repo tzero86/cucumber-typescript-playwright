@@ -9,3 +9,4 @@ export type GlobalConfig = {
     pagesConfig: PagesConfig
     pageElementMappings: PageElementMappings
 }
+export type GlobalVariables = { [key: string]: string}
