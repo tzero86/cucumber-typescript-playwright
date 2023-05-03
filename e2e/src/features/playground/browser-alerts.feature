@@ -1,6 +1,6 @@
 Feature: As a user I can interact with browser alerts
 
-    @dev
+
     @smoke
     @regression
     Scenario: As a user I can interact and assert on browser alerts

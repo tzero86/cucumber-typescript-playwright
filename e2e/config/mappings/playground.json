@@ -25,5 +25,9 @@
     "basic": "[data-id='basic-table']",
     "switch one": "[data-id='switch-one']",
     "switch two": "[data-id='switch-two']",
-    "browser alert": "[data-id='browser-alert']"
+    "browser alert": "[data-id='browser-alert']",
+    "error alert": "[data-id='error-alert']",
+    "warning alert": "[data-id='warning-alert']",
+    "info alert": "[data-id='info-alert']",
+    "success alert": "[data-id='success-alert']"
 }
