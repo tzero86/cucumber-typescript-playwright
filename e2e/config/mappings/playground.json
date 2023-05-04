@@ -43,5 +43,7 @@
     "card main": "[data-id='card-main']",
     "card type": "[data-id='card-type']",
     "card overview": "[data-id='card-overview']",
-    "card action": "[data-id='card-action']"
+    "card action": "[data-id='card-action']",
+    "avatar": "[data-id='avatar']",
+    "small avatar": "[data-id='small-avatar']"
 }
