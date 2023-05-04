@@ -38,5 +38,10 @@
     "second value": "[data-id='second-value']",
     "third value": "[data-id='third-value']",
     "fourth value": "[data-id='fourth-value']",
-    "fifth value": "[data-id='fifth-value']"
+    "fifth value": "[data-id='fifth-value']",
+    "card header": "[data-id='card-header']",
+    "card main": "[data-id='card-main']",
+    "card type": "[data-id='card-type']",
+    "card overview": "[data-id='card-overview']",
+    "card action": "[data-id='card-action']"
 }
