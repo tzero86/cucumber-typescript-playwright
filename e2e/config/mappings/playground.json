@@ -49,5 +49,6 @@
     "drop down button": "[data-id='drop-down-button']",
     "drop down profile": "[data-id='drop-down-profile']",
     "drop down my account": "[data-id='drop-down-my-account']",
-    "drop down logout": "[data-id='drop-down-logout']"
+    "drop down logout": "[data-id='drop-down-logout']",
+    "age": "[name='age']"
 }
