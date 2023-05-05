@@ -45,5 +45,9 @@
     "card overview": "[data-id='card-overview']",
     "card action": "[data-id='card-action']",
     "avatar": "[data-id='avatar']",
-    "small avatar": "[data-id='small-avatar']"
+    "small avatar": "[data-id='small-avatar']",
+    "drop down button": "[data-id='drop-down-button']",
+    "drop down profile": "[data-id='drop-down-profile']",
+    "drop down my account": "[data-id='drop-down-my-account']",
+    "drop down logout": "[data-id='drop-down-logout']"
 }
