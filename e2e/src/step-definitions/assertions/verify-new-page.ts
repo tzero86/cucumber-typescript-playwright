@@ -5,7 +5,7 @@ import { waitFor } from "../../support/wait-for-behavior"
 import { getElementLocator } from "../../support/web-element-helper"
 
 
-const NEW_TAB_TIMEOUT: number = 300;
+const NEW_TAB_TIMEOUT: number = 2000;
 
 Then(
     /^the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" (?:tab|window) should( not)? contain the title "(.*)"$/,

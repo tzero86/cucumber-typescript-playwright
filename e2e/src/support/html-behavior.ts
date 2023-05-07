@@ -1,6 +1,5 @@
-import { Frame, Page } from "@playwright/test"
-import { ElementLocator } from "../env/global"
-
+import { Frame, Page } from "@playwright/test";
+import { ElementLocator } from "../env/global";
 
 /**
  * This TypeScript function clicks on a specified element on a web page.
@@ -14,9 +13,8 @@ export const clickElement = async (
     page: Page,
     elementIdentifier: ElementLocator
 ): Promise<void> => {
-    await page.click(elementIdentifier)
-}
-
+    await page.click(elementIdentifier);
+};
 
 /**
  * This TypeScript function fills an input field on a web page with a given value.
@@ -33,10 +31,9 @@ export const inputValue = async (
     elementIdentifier: ElementLocator,
     input: string
 ): Promise<void> => {
-    await page.focus(elementIdentifier)
-    await page.fill(elementIdentifier, input)
-}
-
+    await page.focus(elementIdentifier);
+    await page.fill(elementIdentifier, input);
+};
 
 /**
  * This TypeScript function selects a specified option from a dropdown menu on a web page.
@@ -51,9 +48,9 @@ export const selectValue = async (
     elementIdentifier: ElementLocator,
     option: string
 ): Promise<void> => {
-    await page.focus(elementIdentifier)
-    await page.selectOption(elementIdentifier, option)
-}
+    await page.focus(elementIdentifier);
+    await page.selectOption(elementIdentifier, option);
+};
 
 /**
  * This TypeScript function checks a specified element on a web page.
@@ -67,10 +64,9 @@ export const checkElement = async (
     page: Page,
     elementIdentifier: ElementLocator
 ): Promise<void> => {
-    await page.focus(elementIdentifier)
-    await page.check(elementIdentifier)
-}
-
+    await page.focus(elementIdentifier);
+    await page.check(elementIdentifier);
+};
 
 /**
  * This TypeScript function focuses on an element and unchecks it.
@@ -84,11 +80,9 @@ export const uncheckElement = async (
     page: Page,
     elementIdentifier: ElementLocator
 ): Promise<void> => {
-    await page.focus(elementIdentifier)
-    await page.uncheck(elementIdentifier)
-}
-
-
+    await page.focus(elementIdentifier);
+    await page.uncheck(elementIdentifier);
+};
 
 /**
  * This TypeScript function retrieves the value of a specified HTML select element on a given page.
@@ -105,15 +99,17 @@ export const uncheckElement = async (
  */
 export const getValue = async (
     page: Page,
-    elementIdentifier: ElementLocator   
+    elementIdentifier: ElementLocator
 ): Promise<string | null> => {
-    
-    const value = await page.$eval<string, HTMLSelectElement>(elementIdentifier, el => {
-        return el.value
-    })
-    return value
-}
-
+    await page.waitForSelector(elementIdentifier);
+    const value = await page.$eval<string, HTMLSelectElement>(
+        elementIdentifier,
+        (el) => {
+            return el.value;
+        }
+    );
+    return value;
+};
 
 /**
  * This TypeScript function returns the content frame of an iframe element identified by a given
@@ -126,14 +122,13 @@ export const getValue = async (
  */
 export const getIframeElement = async (
     page: Page,
-    iframeIdentifier: ElementLocator,
+    iframeIdentifier: ElementLocator
 ): Promise<Frame | undefined | null> => {
-    await page.waitForSelector(iframeIdentifier)
-    const elementHandle = await page.$(iframeIdentifier)
-    const elementIframe = await elementHandle?.contentFrame()
-    return elementIframe
-}
-
+    await page.waitForSelector(iframeIdentifier);
+    const elementHandle = await page.$(iframeIdentifier);
+    const elementIframe = await elementHandle?.contentFrame();
+    return elementIframe;
+};
 
 /**
  * This TypeScript function inputs a given value into a specified element within an iframe.
@@ -150,9 +145,8 @@ export const inputValueOnIframe = async (
     elementIdentifier: ElementLocator,
     inputValue: string
 ): Promise<void> => {
-    await elementIframe.fill(elementIdentifier, inputValue)
-}
-
+    await elementIframe.fill(elementIdentifier, inputValue);
+};
 
 /**
  * This TypeScript function fills an input element on a specific page with a given value.
@@ -171,11 +165,10 @@ export const inputValueOnPage = async (
     pageIndex: number,
     elementIdentifier: ElementLocator,
     inputValue: string
-): Promise <void> => {
-    await pages[pageIndex].focus(elementIdentifier)
-    await pages[pageIndex].fill(elementIdentifier, inputValue)
-}
-
+): Promise<void> => {
+    await pages[pageIndex].focus(elementIdentifier);
+    await pages[pageIndex].fill(elementIdentifier, inputValue);
+};
 
 /**
  * This TypeScript function clicks on a specific element at a given position on a web page.
@@ -191,16 +184,16 @@ export const clickElementAtIndex = async (
     page: Page,
     elementIdentifier: ElementLocator,
     elementPosition: number
-): Promise <void> => {
-    const elements = await page.$$(elementIdentifier)
+): Promise<void> => {
+    const elements = await page.$$(elementIdentifier);
     if (elementPosition >= elements.length) {
-        throw new Error(`Element index ${elementPosition} is out of range, you are trying to click a non-existent element.`)
+        throw new Error(
+            `Element index ${elementPosition} is out of range, you are trying to click a non-existent element.`
+        );
     }
-    const element = elements[elementPosition]
-    await element?.click()
-}
-
-
+    const element = elements[elementPosition];
+    await element?.click();
+};
 
 /**
  * This TypeScript function retrieves the value of a specified attribute from a web page element.
@@ -218,8 +211,24 @@ export const getAttributeText = async (
     page: Page,
     elementIdentifier: ElementLocator,
     attributeName: string
-
 ): Promise<string | null> => {
-    const attributeText = await page.locator(elementIdentifier).getAttribute(attributeName)
-    return attributeText
-}
+    const attributeText = await page
+        .locator(elementIdentifier)
+        .getAttribute(attributeName);
+    return attributeText;
+};
+
+/**
+ * This TypeScript function scrolls a web page to a specified element.
+ * @param {Page} page - The Playwright page object that represents the current web page being automated.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents a CSS selector, XPath expression, or a function that returns a DOM element. It is used to
+ * locate the element on the web page that needs to be scrolled into view.
+ */
+export const scrollIntoView = async (
+    page: Page,
+    elementIdentifier: ElementLocator
+): Promise<void> => {
+    const element = page.locator(elementIdentifier);
+    await element.scrollIntoViewIfNeeded();
+};

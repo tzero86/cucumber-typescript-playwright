@@ -16,8 +16,8 @@ Then(
         console.log(`I fill in the ${elementKey} input on the ${iframeKey} iframe with ${inputValue}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         const iframeIdentifier = getElementLocator(page, iframeKey, globalConfig)
-        const elementIFrame = await getIframeElement(page, iframeIdentifier)
         await waitFor(async () => {
+            const elementIFrame = await getIframeElement(page, iframeIdentifier)
             const result = await page.waitForSelector(iframeIdentifier, { "state": "visible" })
             if (result) {
                 if (elementIFrame) {

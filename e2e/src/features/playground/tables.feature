@@ -1,6 +1,6 @@
 Feature: As a user I can interact with tables.
 
-
+    
     @smoke
     @regression
     Scenario: As a user I can interact and assert table data

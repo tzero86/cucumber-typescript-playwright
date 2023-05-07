@@ -1,5 +1,6 @@
 Feature: As a user I can interact with autocomplete inputs
 
+
     @smoke
     @regression
     Scenario: As a user I can interact and asserts on autocomplete inputs
@@ -10,7 +11,6 @@ Feature: As a user I can interact with autocomplete inputs
         And I click the "the godfather" link
         And the "movies" should contain the value "The Godfather"
         And the "movies" should not contain the value "The Godfather: Part II"
-
 
     @smoke
     @regression

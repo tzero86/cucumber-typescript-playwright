@@ -17,9 +17,9 @@ Then(
         console.log(`the ${elementKey} on the ${iframeKey} iframe should${negate ? " not" : ""} be displayed`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         const iframeIdentifier = getElementLocator(page, iframeKey, globalConfig)
-        const elementIFrame = await getIframeElement(page, iframeIdentifier)
 
         await waitFor(async () => {
+            const elementIFrame = await getIframeElement(page, iframeIdentifier)
             const isElementVisible = (await elementIFrame?.$(elementIdentifier)) !== null
             return isElementVisible !== negate
         })
@@ -37,9 +37,9 @@ Then(
         console.log(`the ${elementKey} on the ${iframeKey} iframe should${negate ? " not" : ""} contain the text ${expectedElementText}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         const iframeIdentifier = getElementLocator(page, iframeKey, globalConfig)
-        const elementIFrame = await getIframeElement(page, iframeIdentifier)
 
         await waitFor(async () => {
+            const elementIFrame = await getIframeElement(page, iframeIdentifier)
             const elementText = await elementIFrame?.textContent(elementIdentifier)
             return elementText?.includes(expectedElementText) !== negate
         })
@@ -57,9 +57,9 @@ Then(
         console.log(`the ${elementKey} on the ${iframeKey} iframe should${negate ? " not" : ""} equal the text ${expectedElementText}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         const iframeIdentifier = getElementLocator(page, iframeKey, globalConfig)
-        const elementIFrame = await getIframeElement(page, iframeIdentifier)
-
+        
         await waitFor(async () => {
+            const elementIFrame = await getIframeElement(page, iframeIdentifier)
             const elementText = await elementIFrame?.textContent(elementIdentifier)
             return elementText === expectedElementText === !negate
         })
