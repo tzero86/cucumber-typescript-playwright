@@ -4,6 +4,7 @@ import { inputValue, selectValue } from "../support/html-behavior"
 import { waitFor } from "../support/wait-for-behavior"
 import { getElementLocator } from "../support/web-element-helper"
 import { ElementKey } from "../env/global"
+import { parseInput } from "../support/input-helper"
 
 
 Then(
@@ -22,7 +23,8 @@ Then(
                 state: "visible"
             })
             if (result) {
-                await inputValue(page, elementIdentifier, input)
+                const parsedInput = parseInput(input, globalConfig)
+                await inputValue(page, elementIdentifier, parsedInput  )
             }
             return result
         })
