@@ -94,7 +94,7 @@ Then(
     /^the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" "([^"]*)" should( not)? contain the text "(.*)"$/,
     async function(this: ScenarioWorld, elementPosition: ElementKey, elementKey: ElementKey, negate: boolean, expectedElementText: string) {
         const {
-            screen: {page, context},
+            screen: {page},
             globalConfig
         } = this
 

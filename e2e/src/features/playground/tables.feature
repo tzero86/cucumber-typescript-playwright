@@ -1,13 +1,14 @@
 Feature: As a user I can interact with tables.
 
+    Background:
+        Given I am on the "home" page
+        And I click the "playground" button
+        When I am directed to the "playground" page
     
     @smoke
     @regression
     Scenario: As a user I can interact and assert table data
-        Given I am on the "home" page
-        And I click the "playground" button
-        When I am directed to the "playground" page
-        And the "basic" table should equal the following:
+        Then the "basic" table should equal the following:
             | 159 | 6   | 24 | 4   |
             | 237 | 9   | 37 | 4.3 |
             | 262 | 16  | 24 | 6   |
@@ -25,10 +26,7 @@ Feature: As a user I can interact with tables.
     @smoke
     @regression
     Scenario: As a user I can interact and assert on table headers
-        Given I am on the "home" page
-        And I click the "playground" button
-        When I am directed to the "playground" page
-        And the headers of the "basic" table should equal the following:
+        Then the headers of the "basic" table should equal the following:
             |Dessert (100g serving)|Calories|Fat (g)|Carbs (g)|Protein (g)|
 
 
