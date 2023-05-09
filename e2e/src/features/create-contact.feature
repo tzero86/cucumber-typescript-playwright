@@ -6,7 +6,7 @@ Feature: As a user I expect to be able to create contacts
         Then I am directed to the "create contact" page
         And the "create contact header" should equal the text "Create Contact"
 
-    @dev
+
     @smoke
     @regression
     Scenario: as a User I expect to be able to create a new contact
@@ -29,7 +29,7 @@ Feature: As a user I expect to be able to create contacts
         And the "delete" should be displayed
 
 
-    @dev
+
     @smoke
     @regression
     Scenario: as a User I do not expect to saved contacts to persist after I refresh the page
