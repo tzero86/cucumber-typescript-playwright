@@ -1,5 +1,6 @@
 Feature: As a user I can interact with hidden and displayed text
 
+
     @smoke
     @regression
     Scenario: As a user I can interact and asserts on hidden and displayed text

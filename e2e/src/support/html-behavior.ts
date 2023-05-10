@@ -1,5 +1,6 @@
 import { Frame, Page } from "@playwright/test";
 import { ElementLocator } from "../env/global";
+import { ElementHandle } from "playwright";
 
 /**
  * This TypeScript function clicks on a specified element on a web page.
@@ -232,3 +233,322 @@ export const scrollIntoView = async (
     const element = page.locator(elementIdentifier);
     await element.scrollIntoViewIfNeeded();
 };
+
+
+/**
+ * This TypeScript function checks if a given element on a web page is checked or not and returns a
+ * boolean value.
+ * @param {Page} page - The page object represents a single tab or window in a web browser and provides
+ * methods to interact with the web page loaded in that tab or window.
+ * @param {ElementLocator} elementIdentifier - ElementLocator is a type that represents a way to locate
+ * an element on a web page. It can be a string selector, a function that returns an element, or an
+ * object that contains information about the element's attributes. In this function, the
+ * elementIdentifier parameter is the ElementLocator used to locate the
+ * @returns A boolean value indicating whether the specified element is checked or not.
+ */
+export const elementChecked = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+): Promise<boolean>  => {
+    const checked = await page.isChecked(elementIdentifier)
+    return checked
+
+}
+
+
+/**
+ * This TypeScript function retrieves the text content of a specified element on a web page.
+ * @param {Page} page - The page object represents the current web page that is being automated using Playwright.
+ * @param {ElementLocator} elementIdentifier - The `elementIdentifier` parameter is a variable that
+ * represents the locator of a specific element on a web page. It can be a CSS selector, XPath
+ * expression, or any other supported locator strategy that can be used to identify the element. The
+ * `getElementText` function uses this parameter to locate the element
+ * @returns a Promise that resolves to a string or null value. The string value is the text content of
+ * the element identified by the provided element locator, while the null value is returned if the
+ * element is not found on the page.
+ */
+export const getElementText =  async (
+    page: Page,
+    elementIdentifier: ElementLocator
+): Promise<string | null> => {
+    const elementText = await page.textContent(elementIdentifier)
+    return elementText
+}
+
+
+/**
+ * This TypeScript function checks if a specified element on a web page is enabled or not.
+ * @param {Page} page - The page object represents a single tab or window in a web browser and provides
+ * methods to interact with the page's content.
+ * @param {ElementLocator} elementIdentifier - ElementLocator is a type that represents a way to locate
+ * an element on a web page. It can be a string selector (e.g. CSS selector, XPath), a function that
+ * returns a DOM element, or a Playwright ElementHandle. The elementIdentifier parameter in the
+ * isElementEnabled function is the
+ * @returns The function `isElementEnabled` returns a Promise that resolves to a boolean value
+ * indicating whether the specified element is enabled or not.
+ */
+export const elementEnabled = async (
+    page: Page,
+    elementIdentifier: ElementLocator
+): Promise<boolean> => {
+    const elementEnabled = await page.isEnabled(elementIdentifier)
+    return elementEnabled
+}
+
+
+/**
+ * This TypeScript function returns the text content of an element at a specified position on a web
+ * page.
+ * @param {Page} page - The Playwright Page object representing the current web page being automated.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents the CSS selector or XPath expression used to locate the element on the page. It is used
+ * to identify the element from which to retrieve the text.
+ * @param {number} index - The position of the element in the list of elements matching the
+ * given element identifier. For example, if there are 5 elements matching the identifier and
+ * elementPosition is 2, then the function will return the text content of the second element in the
+ * list.
+ * @returns a string or null value. The string value is the text content of the element located at the
+ * specified position using the provided element identifier. If the element is not found, the function
+ * returns null.
+ */
+export const getElementTextAtIndex = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+    index: number
+): Promise<string|null> => {
+    const elementTextAtIndex = await page.textContent(`${elementIdentifier}>>nth=${index}`)
+    return elementTextAtIndex
+}
+
+
+
+/**
+ * This TypeScript function returns an element handle for a given element identifier on a web page.
+ * @param {Page} page - The page parameter is of type Page, which is a class from the Playwright library
+ * that represents a single tab or window in a browser. It is used to interact with the web page, such
+ * as navigating to URLs, clicking on elements, and retrieving information from the page.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents a CSS selector or an XPath expression used to locate an element on a web page. It is used
+ * by the function to find and return the element as an ElementHandle object.
+ * @returns an `ElementHandle` that can contain either an `SVGElement` or an `HTMLElement`, or `null`
+ * if the element is not found.
+ */
+export const getElement = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+): Promise<ElementHandle<SVGElement | HTMLElement> | null> => {
+    const element = await page.$(elementIdentifier)
+    return element
+}
+
+
+/**
+ * This TypeScript function returns an element at a specified index on a web page.
+ * @param {Page} page - The Playwright Page object representing the current page being automated.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents the CSS selector or XPath expression used to locate the element on the web page. It is
+ * used to identify the element that needs to be accessed.
+ * @param {number} index - The index parameter is a number that represents the position of the element
+ * that we want to retrieve. It is used in conjunction with the elementIdentifier parameter to locate
+ * the specific element on the page.
+ * @returns an `ElementHandle` that represents an SVG or HTML element at a specific index within a
+ * parent element identified by `elementIdentifier`. If no element is found at the specified index, the
+ * function returns `null`.
+ */
+export const getElementAtIndex = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+    index: number
+): Promise<ElementHandle<SVGElement | HTMLElement> | null> => {
+    const elementAtIndex = await page.$(`${elementIdentifier}>>nth=${index}`)
+    return elementAtIndex
+}
+
+
+
+
+/**
+ * This TypeScript function returns an array of SVG or HTML elements identified by a given locator on a
+ * web page.
+ * @param {Page} page - The page parameter is of type Page, which is a class from the Playwright library
+ * that represents a single tab or window in a browser. It is used to interact with the web page, such
+ * as navigating to URLs, clicking on elements, and retrieving information from the page.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents a CSS selector used to identify the HTML or SVG elements on the web page. It is used by
+ * the Playwright library to locate the elements on the page.
+ * @returns an array of ElementHandle objects that represent SVG or HTML elements on a web page.
+ */
+export const getElements = async (
+    page: Page,
+    elementIdentifier: ElementLocator
+): Promise<ElementHandle<SVGElement | HTMLElement>[]> => {
+    const elements = await page.$$(elementIdentifier)
+    return elements
+}
+
+
+
+/**
+ * This TypeScript function returns a promise that resolves to an element handle within an iframe based
+ * on a given element locator.
+ * @param {Frame} elementIframe - This parameter is of type `Frame` and represents the iframe element
+ * that contains the element we want to retrieve.
+ * @param {ElementLocator} elementIdentifier - ElementLocator is a type that represents a string used
+ * to locate an element on a web page. It can be a CSS selector, an XPath expression, or any other
+ * valid method of locating an element. In this function, it is used to locate an element within an
+ * iframe.
+ * @returns a Promise that resolves to either an ElementHandle of type SVGElement or HTMLElement, or
+ * null.
+ */
+export const getElementWithinIframe = async (
+    elementIframe: Frame,
+    elementIdentifier: ElementLocator,
+
+): Promise<ElementHandle<SVGElement | HTMLElement> | null> => {
+    const visibleOnIframeElement = await elementIframe?.$(elementIdentifier)
+    return visibleOnIframeElement
+}
+
+
+
+/**
+ * This TypeScript function retrieves the text content of an element within an iframe.
+ * @param {Frame} elementIframe - This parameter is of type `Frame` and represents the iframe element
+ * that contains the element we want to retrieve text from.
+ * @param {ElementLocator} elementIdentifier - ElementLocator is a type that represents a way to locate
+ * an element within the iframe. It could be a CSS selector, an XPath expression, or any other method
+ * of locating an element within the DOM.
+ * @returns a Promise that resolves to a string or null value. The string value is the text content of
+ * an element within an iframe, identified by the provided element locator. If the element is not found
+ * or there is an error, the function will return null.
+ */
+export const getTextWithinIframeElement = async (
+    elementIframe: Frame,
+    elementIdentifier: ElementLocator,
+): Promise<string | null> => {
+    const textWithinIframeElement = await elementIframe?.textContent(elementIdentifier)
+    return textWithinIframeElement
+}
+
+
+
+/**
+ * This TypeScript function returns the title of a specific page within an array of pages.
+ * @param {Page} page - This parameter is of type `Page` and represents the current page being
+ * processed.
+ * @param {Page[]} pages - An array of Page objects representing the pages in a website or web
+ * application.
+ * @param {number} pageIndex - The index of the page within the `pages` array for which we want to
+ * retrieve the title.
+ * @returns The function `getTitleWithinPage` returns a promise that resolves to a string or null
+ * value. The string value is the title of the page at the specified index within the `pages` array,
+ * and null is returned if the page does not have a title.
+ */
+export const getTitleWithinPage = async (
+    page: Page,
+    pages: Page[],
+    pageIndex: number,
+): Promise<string | null> => {
+    const titleWithinPage = await pages[pageIndex].title()
+    return titleWithinPage
+}
+
+
+
+/**
+ * This TypeScript function returns an element handle on a specific page based on an element
+ * identifier.
+ * @param {Page} page - The current page being navigated by the automation script.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents the CSS selector or XPath expression used to locate the element on the page. It is used
+ * by the Playwright library to find the element on the page.
+ * @param {Page[]} pages - An array of Page objects representing the different pages of a website or
+ * web application.
+ * @param {number} pageIndex - pageIndex is a number that represents the index of the page in the array
+ * of pages passed as a parameter to the function. It is used to specify which page to search for the
+ * element on.
+ * @returns an `ElementHandle` that can contain either an `SVGElement` or an `HTMLElement`, or `null`
+ * if the element is not found on the page.
+ */
+export const getElementOnPage = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+    pages: Page[],
+    pageIndex: number,
+): Promise<ElementHandle<SVGElement | HTMLElement> | null> => {
+    const elementOnPage = await pages[pageIndex].$(elementIdentifier)
+    return elementOnPage
+}
+
+
+
+/**
+ * This function retrieves the text content of a specified element on a given page.
+ * @param {Page} page - The current page being used for the function.
+ * @param {ElementLocator} elementIdentifier - ElementLocator is a type that represents a way to locate
+ * an element on a web page. It could be a CSS selector, an XPath expression, or any other method of
+ * identifying an element. The elementIdentifier parameter in this function is the specific identifier
+ * used to locate the element whose text content is being retrieved
+ * @param {Page[]} pages - An array of Page objects representing the pages of a website.
+ * @param {number} pageIndex - The pageIndex parameter is a number that represents the index of the
+ * page within the pages array that contains the element whose text content we want to retrieve.
+ * @returns a promise that resolves to a string or null value. The string value is the text content of
+ * the element identified by the `elementIdentifier` parameter within the page specified by the
+ * `pageIndex` parameter. If the element is not found, the function returns null.
+ */
+export const  getElementTextWithinPage = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+    pages: Page[],
+    pageIndex: number,
+): Promise<string | null> => {
+    const elementTextWithinPage = await pages[pageIndex].textContent(elementIdentifier)
+    return elementTextWithinPage
+}
+
+
+
+/**
+ * This function retrieves table data from a web page and returns it as a JSON string.
+ * @param {Page} page - The page object represents the current web page that is being automated using Playwright.
+ * @param {ElementLocator} elementIdentifier - The elementIdentifier parameter is a string that
+ * represents the CSS selector for the table element on the web page. It is used to locate the table
+ * element on the page and extract its data.
+ * @returns The function `getTableData` returns a Promise that resolves to a stringified JSON
+ * representation of the table data extracted from the web page using the provided `page` and
+ * `elementIdentifier` parameters.
+ */
+export const getTableData = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+): Promise<string> => {
+    const table = await page.$$eval(elementIdentifier+" tbody tr", (rows) => {
+        return rows.map((row) => {
+            const cells = row.querySelectorAll('td')
+            return Array.from(cells).map(cell => cell.textContent)
+        })
+    })
+    return JSON.stringify(table)
+}
+
+
+/**
+ * This TypeScript function retrieves table headers from a web page using a given element identifier.
+ * @param {Page} page - The Playwright Page object that represents the current page being automated.
+ * @param {ElementLocator} elementIdentifier - The identifier for the HTML element that contains the
+ * table for which we want to retrieve the headers.
+ * @returns a Promise that resolves to a stringified JSON array of table headers.
+ */
+export const getTableHeaders = async (
+    page: Page,
+    elementIdentifier: ElementLocator,
+): Promise<string> => {
+    const headers = await page.$$eval(elementIdentifier+" thead", (headers) => {
+        return headers.map((header) => {
+            const headers = header.querySelectorAll('th')
+            return Array.from(headers).map(header => header.textContent?.replace(/[\u200B-\u200D\uFEFF]/g, '').replace(/\s+/g, ' ').trim().normalize('NFC'))
+
+        })
+    })
+    return JSON.stringify(headers)
+}

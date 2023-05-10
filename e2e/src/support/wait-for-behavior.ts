@@ -1,4 +1,4 @@
-import  { Page } from "playwright"
+import  { Frame, Page } from "playwright"
 import { ElementLocator } from "../env/global";
 import { envNumber } from "../env/parseEnv";
 import { logger } from "../logger";
@@ -50,6 +50,22 @@ export const waitForSelectorOnPage = async (
 ): Promise<boolean> => {
     try{
         await pages[pageIndex].waitForSelector(elementIdentifier, {
+            state: 'visible',
+            timeout: envNumber('SELECTOR_TIMEOUT'),
+        })
+        return true
+    } catch (error) {
+        return false
+    }
+}
+
+
+export const waitForSelectInIframe = async (
+    elementIframe: Frame,
+    elementIdentifier: ElementLocator,
+): Promise<boolean> => {
+    try {
+        await elementIframe?.waitForSelector(elementIdentifier, { 
             state: 'visible',
             timeout: envNumber('SELECTOR_TIMEOUT'),
         })

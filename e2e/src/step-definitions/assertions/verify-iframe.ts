@@ -2,8 +2,8 @@ import { Then } from "@cucumber/cucumber"
 import { ScenarioWorld } from "../setup/world"
 import { ElementKey } from "../../env/global"
 import { getElementLocator } from "../../support/web-element-helper"
-import { getIframeElement } from "../../support/html-behavior"
-import { waitFor } from "../../support/wait-for-behavior"
+import { getElementWithinIframe, getIframeElement, getTextWithinIframeElement } from "../../support/html-behavior"
+import { waitFor, waitForSelectInIframe } from "../../support/wait-for-behavior"
 import { logger } from "../../logger"
 
 
@@ -21,11 +21,20 @@ Then(
 
         await waitFor(async () => {
             const elementIFrame = await getIframeElement(page, iframeIdentifier)
-            const isElementVisible = (await elementIFrame?.$(elementIdentifier)) !== null
-            return isElementVisible !== negate
+            if (elementIFrame) {
+                const elementStable = await waitForSelectInIframe(elementIFrame, elementIdentifier)
+
+                if (elementStable) {
+                    const isElementVisible = await getElementWithinIframe(elementIFrame, elementIdentifier) !== null
+                    return isElementVisible !== negate
+                } else {
+                    return elementStable
+                }
+            }
         })
     }
 )
+
 
 Then(
     /^the "([^"]*)" on the "([^"]*)" iframe should( not)? contain the text "(.*)"$/,
@@ -41,11 +50,20 @@ Then(
 
         await waitFor(async () => {
             const elementIFrame = await getIframeElement(page, iframeIdentifier)
-            const elementText = await elementIFrame?.textContent(elementIdentifier)
-            return elementText?.includes(expectedElementText) !== negate
+            if(elementIFrame) {
+                const elementStable = await waitForSelectInIframe(elementIFrame, elementIdentifier)
+                if (elementStable) {
+                    const elementText = await getTextWithinIframeElement(elementIFrame, elementIdentifier)
+                    return elementText?.includes(expectedElementText) !== negate
+                } else {
+                    return elementStable
+                }
+            }            
         })
     }
 )
+
+
 
 Then(
     /^the "([^"]*)" on the "([^"]*)" iframe should( not)? equal the text "(.*)"$/,
@@ -61,8 +79,15 @@ Then(
         
         await waitFor(async () => {
             const elementIFrame = await getIframeElement(page, iframeIdentifier)
-            const elementText = await elementIFrame?.textContent(elementIdentifier)
-            return elementText === expectedElementText === !negate
+            if(elementIFrame) {
+                const elementStable = await waitForSelectInIframe(elementIFrame, elementIdentifier)
+                if (elementStable) {
+                    const elementText = await getTextWithinIframeElement(elementIFrame, elementIdentifier)
+                    return elementText === expectedElementText === !negate
+                } else {
+                    return elementStable
+                }
+            }
         })
     }
 )
