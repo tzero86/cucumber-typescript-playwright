@@ -3,6 +3,7 @@ import { ElementKey } from '../../env/global'
 import { getElementLocator } from '../../support/web-element-helper'
 import { ScenarioWorld } from '../setup/world'
 import { waitFor } from '../../support/wait-for-behavior'
+import { logger } from '../../logger'
 
 
 
@@ -14,7 +15,7 @@ Then(
             globalConfig,
             globalVariables
         } = this
-        console.log(`The ${elementKey} should ${negate ? 'not ': ''}equal the ${globalVariables[variableKey]} stored in global variables`)
+        logger.log(`The ${elementKey} should ${negate ? 'not ': ''}equal the ${globalVariables[variableKey]} stored in global variables`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {
@@ -34,7 +35,7 @@ Then(
             globalConfig,
             globalVariables
         } = this
-        console.log(`The ${elementKey} should ${negate ? 'not ': ''}contain the ${globalVariables[variableKey]} stored in global variables`)
+        logger.log(`The ${elementKey} should ${negate ? 'not ': ''}contain the ${globalVariables[variableKey]} stored in global variables`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {

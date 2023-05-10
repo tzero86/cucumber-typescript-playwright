@@ -1,5 +1,6 @@
 import { Then } from "@cucumber/cucumber"
 import { ScenarioWorld } from "./setup/world"
+import { logger } from "../logger"
 
 
 Then(
@@ -9,7 +10,7 @@ Then(
             screen: { page },
         } = this
 
-        console.log(`🕕 I wait ${seconds} seconds`)
+        logger.log(`🕕 I wait ${seconds} seconds`)
         await page.waitForTimeout(parseInt(seconds, 10) * 1000)
     }
 )

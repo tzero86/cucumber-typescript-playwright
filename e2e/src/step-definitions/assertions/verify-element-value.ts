@@ -4,6 +4,7 @@ import { getElementLocator } from '../../support/web-element-helper'
 import { ScenarioWorld } from '../setup/world'
 import { waitFor } from '../../support/wait-for-behavior'
 import { getAttributeText, getValue } from '../../support/html-behavior'
+import { logger } from '../../logger'
 
 
 
@@ -14,10 +15,12 @@ Then(
             screen: { page },
             globalConfig
         } = this
-        console.log(`The ${elementKey} should ${negate ? 'not ': ''}contain the text ${expectedElementText}`)
+        logger.log(`The ${elementKey} should ${negate ? 'not ': ''}contain the text ${expectedElementText}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         await waitFor(async () => {
             const elementText = await page.textContent(elementIdentifier)
+            logger.debug(`Element text: ${elementText}`)
+            logger.debug(`Element text: ${expectedElementText}`)
             return elementText?.includes(expectedElementText) === !negate
         })
     }
@@ -31,7 +34,7 @@ Then(
             screen: { page },
             globalConfig
         } = this
-        console.log(`The ${elementKey} should ${negate ? 'not ': ''}equal the text ${expectedElementText}`)
+        logger.log(`The ${elementKey} should ${negate ? 'not ': ''}equal the text ${expectedElementText}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         await waitFor(async () => {
             const elementText = await page.textContent(elementIdentifier)
@@ -48,7 +51,7 @@ Then(
             screen: { page },
             globalConfig
         } = this
-        console.log(`The ${elementKey} value should ${negate ? 'not ': ''}contain the value ${elementValue}`)
+        logger.log(`The ${elementKey} value should ${negate ? 'not ': ''}contain the value ${elementValue}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         await waitFor(async () => {
             const elementAttribute = await getValue(page, elementIdentifier)
@@ -64,7 +67,7 @@ Then(
             screen: { page },
             globalConfig
         } = this
-        console.log(`The ${elementKey} value should ${negate ? 'not ': ''}equal the value ${elementValue}`)
+        logger.log(`The ${elementKey} value should ${negate ? 'not ': ''}equal the value ${elementValue}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         await waitFor(async () => {
             const elementAttribute = await getValue(page, elementIdentifier)
@@ -81,7 +84,7 @@ Then(
             screen: { page },
             globalConfig
         } = this
-        console.log(`The ${elementKey} should ${negate ? 'not ': ''}be enabled`)
+        logger.log(`The ${elementKey} should ${negate ? 'not ': ''}be enabled`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         await waitFor(async () => {
             const isElementEnabled = await page.isEnabled(elementIdentifier)
@@ -98,7 +101,7 @@ Then(
             globalConfig
         } = this
 
-        console.log(`The ${elementPosition} ${elementKey} should ${negate ? 'not ': ''}contain the text ${expectedElementText}`)
+        logger.log(`The ${elementPosition} ${elementKey} should ${negate ? 'not ': ''}contain the text ${expectedElementText}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         const pageIndex = parseInt(elementPosition.replace(/[^0-9]/g, '')) - 1
 
@@ -118,7 +121,7 @@ Then(
             globalConfig
         } = this
 
-        console.log(`The ${elementKey} ${attribute} attribute should ${negate ? 'not ': ''}contain the text ${expectedElementText}`)
+        logger.log(`The ${elementKey} ${attribute} attribute should ${negate ? 'not ': ''}contain the text ${expectedElementText}`)
 
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         await waitFor(async () => {

@@ -4,6 +4,7 @@ import { clickElement, clickElementAtIndex } from "../support/html-behavior"
 import { waitFor } from "../support/wait-for-behavior"
 import { getElementLocator } from "../support/web-element-helper"
 import { ElementKey } from "../env/global"
+import { logger } from "../logger"
 
 When(
     /^I click the "([^"]*)" (?:button|link|icon|element)$/,
@@ -13,7 +14,7 @@ When(
             globalConfig,
         } = this
 
-        console.log(`I click on the ${elementKey} button|link|icon|element`)
+        logger.log(`I click on the ${elementKey} button|link|icon|element`)
 
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
@@ -38,11 +39,11 @@ When(
             globalConfig,
         } = this
 
-        console.log(`I click on the ${elementPosition} ${elementKey} button|link`)
+        logger.log(`I click on the ${elementPosition} ${elementKey} button|link`)
         
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         const pageIndex = Number(elementPosition.match(/\d/g)?.join("")) - 1
-        console.log(`Element index: ${pageIndex}`)
+        logger.log(`Element index: ${pageIndex}`)
 
         await waitFor(async() => {
             const result = await page.waitForSelector(elementIdentifier, { "state": "visible" })

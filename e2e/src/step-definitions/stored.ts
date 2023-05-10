@@ -3,6 +3,7 @@ import { ScenarioWorld } from "./setup/world"
 import { waitFor } from "../support/wait-for-behavior"
 import { getElementLocator } from "../support/web-element-helper"
 import { ElementKey } from "../env/global"
+import { logger } from "../logger"
 
 
 
@@ -15,7 +16,7 @@ Then(
             globalVariables
         } = this
 
-        console.log(`I retrieve the ${elementKey} text and store it as ${variableName} in global variables`)
+        logger.log(`I retrieve the ${elementKey} text and store it as ${variableName} in global variables`)
 
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 

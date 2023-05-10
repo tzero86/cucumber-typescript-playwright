@@ -4,6 +4,7 @@ import { ElementKey } from '../env/global'
 import { getElementLocator } from '../support/web-element-helper'
 import { waitFor } from '../support/wait-for-behavior'
 import { checkElement, uncheckElement } from '../support/html-behavior'
+import { logger } from '../logger'
 
 
 
@@ -15,7 +16,7 @@ Then(
             globalConfig,
         } = this
 
-        console.log(`☑️ I ${unchecked?'uncheck ':'check'} the ${elementKey} check box|radio button|switch`)
+        logger.log(`☑️ I ${unchecked?'uncheck ':'check'} the ${elementKey} check box|radio button|switch`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {

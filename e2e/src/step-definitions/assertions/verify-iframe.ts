@@ -4,6 +4,7 @@ import { ElementKey } from "../../env/global"
 import { getElementLocator } from "../../support/web-element-helper"
 import { getIframeElement } from "../../support/html-behavior"
 import { waitFor } from "../../support/wait-for-behavior"
+import { logger } from "../../logger"
 
 
 
@@ -14,7 +15,7 @@ Then(
             screen: { page },
             globalConfig,
         } = this
-        console.log(`the ${elementKey} on the ${iframeKey} iframe should${negate ? " not" : ""} be displayed`)
+        logger.log(`the ${elementKey} on the ${iframeKey} iframe should${negate ? " not" : ""} be displayed`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         const iframeIdentifier = getElementLocator(page, iframeKey, globalConfig)
 
@@ -34,7 +35,7 @@ Then(
             globalConfig
         } = this
 
-        console.log(`the ${elementKey} on the ${iframeKey} iframe should${negate ? " not" : ""} contain the text ${expectedElementText}`)
+        logger.log(`the ${elementKey} on the ${iframeKey} iframe should${negate ? " not" : ""} contain the text ${expectedElementText}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         const iframeIdentifier = getElementLocator(page, iframeKey, globalConfig)
 
@@ -54,7 +55,7 @@ Then(
             globalConfig
         } = this
 
-        console.log(`the ${elementKey} on the ${iframeKey} iframe should${negate ? " not" : ""} equal the text ${expectedElementText}`)
+        logger.log(`the ${elementKey} on the ${iframeKey} iframe should${negate ? " not" : ""} equal the text ${expectedElementText}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         const iframeIdentifier = getElementLocator(page, iframeKey, globalConfig)
         

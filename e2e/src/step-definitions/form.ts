@@ -5,6 +5,7 @@ import { waitFor } from "../support/wait-for-behavior"
 import { getElementLocator } from "../support/web-element-helper"
 import { ElementKey } from "../env/global"
 import { parseInput } from "../support/input-helper"
+import { logger } from "../logger"
 
 
 Then(
@@ -15,7 +16,7 @@ Then(
             globalConfig,
         } = this
 
-        console.log(`I fill in the ${elementKey} input with ${input}`)
+        logger.log(`I fill in the ${elementKey} input with ${input}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {
@@ -41,7 +42,7 @@ Then(
             globalConfig,
         }= this
 
-        console.log(`I select the ${option} option from the ${elementKey} dropdown`)
+        logger.log(`I select the ${option} option from the ${elementKey} dropdown`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {

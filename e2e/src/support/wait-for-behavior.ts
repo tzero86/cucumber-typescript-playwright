@@ -1,3 +1,5 @@
+import { logger } from "../logger";
+
 export const waitFor = async <T>(
 
     predicate: () => T | Promise<T>,
@@ -15,7 +17,7 @@ export const waitFor = async <T>(
         if (result) { return result }
 
         await sleep(wait)
-        console.log(`Waiting for ${wait}ms`)
+        logger.log(`Waiting for ${wait}ms`)
     }
 
     throw new Error(`Timeout after ${timeout}ms`)

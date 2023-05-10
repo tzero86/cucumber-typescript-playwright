@@ -5,7 +5,7 @@ Feature: As a user I can interact with login forms
         And I click the "playground" button
         When I am directed to the "playground" page
 
-    @dev
+    
     @smoke
     @regression
     Scenario Outline: As a user I can populate login details leveraging env variables

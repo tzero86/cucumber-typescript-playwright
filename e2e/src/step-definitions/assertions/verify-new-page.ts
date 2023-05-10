@@ -3,6 +3,7 @@ import { ScenarioWorld } from "../setup/world"
 import { ElementKey } from "../../env/global"
 import { waitFor } from "../../support/wait-for-behavior"
 import { getElementLocator } from "../../support/web-element-helper"
+import { logger } from "../../logger"
 
 
 const NEW_TAB_TIMEOUT: number = 2000;
@@ -14,7 +15,7 @@ Then(
             screen : {page, context},
         } = this
 
-        console.log(`the ${tabNumber} tab|window should${negate ? " not" : ""} contain the title ${expectedTabTitle}`)
+        logger.log(`the ${tabNumber} tab|window should${negate ? " not" : ""} contain the title ${expectedTabTitle}`)
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
         await page.waitForTimeout(NEW_TAB_TIMEOUT)
 
@@ -35,7 +36,7 @@ Then(
             globalConfig
         } = this
 
-        console.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} be displayed`)
+        logger.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} be displayed`)
 
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
         await page.waitForTimeout(NEW_TAB_TIMEOUT)
@@ -59,7 +60,7 @@ Then(
             globalConfig
         } = this
 
-        console.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} contain the text ${expectedText}`)
+        logger.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} contain the text ${expectedText}`)
 
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
         await page.waitForTimeout(NEW_TAB_TIMEOUT)
@@ -82,7 +83,7 @@ Then(
             globalConfig
         } = this
 
-        console.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} equal the text ${expectedText}`)
+        logger.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} equal the text ${expectedText}`)
 
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
         await page.waitForTimeout(NEW_TAB_TIMEOUT)

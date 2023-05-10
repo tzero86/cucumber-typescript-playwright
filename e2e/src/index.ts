@@ -7,7 +7,7 @@ import { generateCucumberRuntimeTag } from './support/tag-helper'
 const environment = env('NODE_ENV')
 
 dotenv.config({ path: env('COMMON_CONFIG_FILE')})
-console.log(`${env('ENV_PATH')}${environment}.env`)
+console.log(`Running On: ${env('ENV_PATH')}${environment}.env`)
 dotenv.config({ path: `${env('ENV_PATH')}${environment}.env`})
 
 

@@ -4,6 +4,7 @@ import { getElementLocator } from '../../support/web-element-helper'
 import { ScenarioWorld } from '../setup/world'
 import { waitFor } from '../../support/wait-for-behavior'
 import * as deepDiff from 'deep-diff'
+import { logger } from '../../logger'
 
 
 Then(
@@ -14,7 +15,7 @@ Then(
             globalConfig
         } = this
 
-        console.log(`The ${elementKey} table should ${negate ? 'not ': ''}equal the following: ${dataTable}`)
+        logger.log(`The ${elementKey} table should ${negate ? 'not ': ''}equal the following: ${dataTable}`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {
@@ -24,8 +25,8 @@ Then(
                     return Array.from(cells).map(cell => cell.textContent)
                 })
             })
-            console.log('dataBefore: ', JSON.stringify(dataBefore))
-            console.log('dataTable: ', JSON.stringify(dataTable.raw()))
+            logger.log('dataBefore: ', JSON.stringify(dataBefore))
+            logger.log('dataTable: ', JSON.stringify(dataTable.raw()))
             return JSON.stringify(dataBefore) === JSON.stringify(dataTable.raw()) === !negate
         })
 
@@ -41,7 +42,7 @@ Then(
         } = this
 
         
-        console.log(`The headers of the ${elementKey} table should ${negate ? 'not ': ''}equal the following: ${dataTable}`)
+        logger.log(`The headers of the ${elementKey} table should ${negate ? 'not ': ''}equal the following: ${dataTable}`)
 
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
@@ -55,10 +56,10 @@ Then(
             })
             
             const normalizedDataTable = dataTable.raw()
-            console.log('headersBefore: ', JSON.stringify(headersBefore))
-            console.log('normalizedDataTable: ', JSON.stringify(normalizedDataTable))
+            logger.log('headersBefore: ', JSON.stringify(headersBefore))
+            logger.log('normalizedDataTable: ', JSON.stringify(normalizedDataTable))
             const differences = deepDiff.diff(headersBefore, normalizedDataTable);
-            console.log('Differences: ', differences);
+            logger.log('Differences: ', differences);
             return JSON.stringify(headersBefore) == JSON.stringify(normalizedDataTable) === !negate
         })
         
