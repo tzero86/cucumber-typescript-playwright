@@ -1,5 +1,6 @@
 import { Page } from "playwright"
 import { GlobalConfig, PageId } from "../env/global"
+import { waitForResult } from "./wait-for-behavior"
 
 
 export const navigateToPage = async (
@@ -35,9 +36,13 @@ export const currentPageMatchesPageId = (
     page: Page,
     pageId: PageId,
     globalConfig: GlobalConfig
-): boolean => {
+): waitForResult => {
     const { pathname: currentPath} = new URL(page.url())
-    return pathMatchesPageId(currentPath, pageId, globalConfig)
+    if (pathMatchesPageId(currentPath, pageId, globalConfig)) {
+        return waitForResult.PASS
+    } else {
+        return waitForResult.ELEMENT_NOT_AVAILABLE
+    }
 }
 
 

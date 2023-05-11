@@ -3,29 +3,31 @@ import  { GlobalConfig, ElementKey, ElementLocator } from "../env/global"
 import { getCurrentPageId } from "./navigation-behavior"
 
 
+
 /**
- * This TypeScript function returns an element locator based on the current page and element key
- * provided, using a global configuration object.
- * @param {Page} page - The current page object being used in the automation script. It is an
- * instance of the Playwright Page class.
- * @param {ElementKey} elementKey - The `elementKey` parameter is a string that represents the unique
- * identifier for a specific element on a web page. This identifier is used to locate the element using
- * various methods such as CSS selectors, XPath expressions, or other attributes.
- * @param {GlobalConfig} globalConfig - The `globalConfig` parameter is an object that contains
- * configuration settings for the entire test suite. It may include settings such as the base URL for
- * the application being tested, the timeout duration for certain actions, and mappings of page
- * elements to their locators.
- * @returns an `ElementLocator` which is a string that represents the locator strategy and value used
- * to identify a web element on a web page. The locator strategy and value are obtained from the
- * `pageElementMappings` object in the `globalConfig` parameter, using the `currentPage` and
- * `elementKey` parameters as keys. If the `pageElementMappings` object does not contain a
+ * This TypeScript function retrieves an element locator based on a given page, element key, and global
+ * configuration.
+ * @param {Page} page - The current page object being used in the automation script.
+ * @param {ElementKey} elementKey - The key or identifier for the element that needs to be located on
+ * the page.
+ * @param {GlobalConfig} globalConfig - The `globalConfig` parameter is an object that contains global
+ * configuration settings for the automation framework. It may include things like page element
+ * mappings, test data, and other settings that are used across multiple tests or pages.
+ * @returns an `ElementLocator` which is a string that represents the identifier for a specific element
+ * on a web page. The `getElementLocator` function takes in a `Page` object, an `ElementKey` string,
+ * and a `GlobalConfig` object as parameters. It then uses the `pageElementMappings` property from the
+ * `GlobalConfig` object to find the identifier for the
  */
 export const getElementLocator = (
     page: Page,
     elementKey: ElementKey,
     globalConfig: GlobalConfig
 ): ElementLocator => {
-    const currentPage = getCurrentPageId(page, globalConfig)
     const {  pageElementMappings } = globalConfig
-    return pageElementMappings[currentPage]?.[elementKey] || pageElementMappings.common?.[elementKey]
+    const currentPage = getCurrentPageId(page, globalConfig)
+    const elementIdentifier = pageElementMappings[currentPage]?.[elementKey] || pageElementMappings.common?.[elementKey]
+    if(!elementIdentifier) {
+        throw new Error(`Unable to Find the ${elementKey} mapping on the ${currentPage} page.`)
+    }
+    return elementIdentifier
 }

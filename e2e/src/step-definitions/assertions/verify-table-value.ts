@@ -2,7 +2,7 @@ import { DataTable, Then } from '@cucumber/cucumber'
 import { ElementKey } from '../../env/global'
 import { getElementLocator } from '../../support/web-element-helper'
 import { ScenarioWorld } from '../setup/world'
-import { waitFor, waitForSelector } from '../../support/wait-for-behavior'
+import { waitFor, waitForResult, waitForSelector } from '../../support/wait-for-behavior'
 import * as deepDiff from 'deep-diff'
 import { logger } from '../../logger'
 import { getTableData, getTableHeaders } from '../../support/html-behavior'
@@ -26,10 +26,19 @@ Then(
                 const tableData = await getTableData(page, elementIdentifier)
                 logger.log('dataBefore: ', tableData)
                 logger.log('dataTable: ', JSON.stringify(dataTable.raw()))
-                return tableData === JSON.stringify(dataTable.raw()) === !negate
+                if (tableData === JSON.stringify(dataTable.raw()) === !negate) {
+                    return waitForResult.PASS
+                } else {
+                    return waitForResult.FAIL
+                }
             } else {
-                return elementStable
+                return waitForResult.ELEMENT_NOT_AVAILABLE
             }
+        },
+        globalConfig,
+        { 
+            target: elementKey,
+            failureMessage: `💣 Expected ${elementKey} table to ${negate ? 'not ': ''}equal the following: ${dataTable}`
         })
 
     }
@@ -54,15 +63,24 @@ Then(
             if (elementStable) {
                 const normalizedDataTable = JSON.stringify(dataTable.raw())
                 const tableHeaders = await getTableHeaders(page, elementIdentifier)
-                logger.log('headersBefore: ', tableHeaders)
-                logger.log('normalizedDataTable: ', normalizedDataTable)
+                logger.debug('headersBefore: ', tableHeaders)
+                logger.debug('normalizedDataTable: ', normalizedDataTable)
                 const differences = deepDiff.diff(tableHeaders, normalizedDataTable);
-                logger.log(`Differences: ${differences === undefined  ? 'No Differences Found' : differences }`);
-                return tableHeaders == normalizedDataTable === !negate
+                logger.debug(`Differences: ${differences === undefined  ? 'No Differences Found' : differences }`);
+                if (tableHeaders == normalizedDataTable === !negate) {
+                    return waitForResult.PASS
+                } else {
+                    return waitForResult.FAIL
+                }
 
             } else {
-                return elementStable
+                return waitForResult.ELEMENT_NOT_AVAILABLE
             }
+        },
+        globalConfig,
+        { 
+            target: elementKey,
+            failureMessage: `💣 Expected the headers of ${elementKey} table to ${negate ? 'not ': ''}equal the following: ${dataTable}`
         })
     }
 )

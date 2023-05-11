@@ -1,7 +1,7 @@
 import { Then } from "@cucumber/cucumber"
 import { ScenarioWorld } from "../setup/world"
 import { ElementKey } from "../../env/global"
-import { waitFor, waitForSelectorOnPage } from "../../support/wait-for-behavior"
+import { waitFor, waitForResult, waitForSelectorOnPage } from "../../support/wait-for-behavior"
 import { getElementLocator } from "../../support/web-element-helper"
 import { logger } from "../../logger"
 import { getElementOnPage, getElementTextWithinPage, getTitleWithinPage } from "../../support/html-behavior"
@@ -11,19 +11,29 @@ const NEW_TAB_TIMEOUT: number = 2000;
 
 Then(
     /^the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" (?:tab|window) should( not)? contain the title "(.*)"$/,
-    async function (this: ScenarioWorld, tabNumber: ElementKey, negate: boolean, expectedTabTitle: string) {
+    async function (this: ScenarioWorld, elementPosition: ElementKey, negate: boolean, expectedTitle: string) {
         const {
             screen : {page, context},
+            globalConfig
         } = this
 
-        logger.log(`the ${tabNumber} tab|window should${negate ? " not" : ""} contain the title ${expectedTabTitle}`)
-        const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
+        logger.log(`the ${elementPosition} tab|window should${negate ? " not" : ""} contain the title ${expectedTitle}`)
+        const pageIndex = Number(elementPosition.match(/\d/g)?.join("")) - 1
         await page.waitForTimeout(NEW_TAB_TIMEOUT)
 
         await waitFor(async () => {
             let pages = context.pages()
             const pageTitle = await getTitleWithinPage(page, pages, pageIndex)
-            return pageTitle?.includes(expectedTabTitle) !== negate
+            if (pageTitle?.includes(expectedTitle) !== negate) {
+                return waitForResult.PASS
+            } else {
+                return waitForResult.ELEMENT_NOT_AVAILABLE
+            }
+        },
+        globalConfig,
+        { 
+            target: expectedTitle,
+            failureMessage: `💣 Expected ${elementPosition} tab|window to ${negate ? 'not ': ''}contain the title ${expectedTitle}.`
         })
     }
 )
@@ -47,7 +57,16 @@ Then(
         await waitFor(async () => {
             let pages = context.pages()
             const isElementVisible = await getElementOnPage(page, elementIdentifier, pages, pageIndex) !== null
-            return isElementVisible === !negate
+            if (isElementVisible === !negate) {
+                return waitForResult.PASS
+            } else {
+                return waitForResult.ELEMENT_NOT_AVAILABLE
+            }
+        },
+        globalConfig,
+        { 
+            target: elementKey,
+            failureMessage: `💣 Expected ${elementKey} on the ${tabNumber} tab|window to ${negate ? 'not ': ''}be displayed.`
         })
     }
 )
@@ -75,10 +94,19 @@ Then(
             
             if (elementStable) {
                 const elementText = await getElementTextWithinPage(page, elementIdentifier, pages, pageIndex)
-                return elementText?.includes(expectedText) === !negate
+                if (elementText?.includes(expectedText) === !negate) {
+                    return waitForResult.PASS
+                } else {
+                    return waitForResult.FAIL
+                }
             } else {
-                return elementStable
+                return waitForResult.ELEMENT_NOT_AVAILABLE
             }
+        },
+        globalConfig,
+        { 
+            target: elementKey,
+            failureMessage: `💣 Expected ${elementKey} on the ${tabNumber} tab|window to ${negate ? 'not ': ''}contain the text ${expectedText}.`
         })
     }
 )
@@ -105,10 +133,19 @@ Then(
 
             if (elementStable) {
                 const elementText = await getElementTextWithinPage(page, elementIdentifier, pages, pageIndex)
-                return elementText === expectedText === !negate
+                if (elementText === expectedText === !negate) {
+                    return waitForResult.PASS
+                } else {
+                    return waitForResult.FAIL
+                }
             } else {
-                return elementStable
+                return waitForResult.ELEMENT_NOT_AVAILABLE
             }
+        },
+        globalConfig,
+        { 
+            target: elementKey,
+            failureMessage: `💣 Expected ${elementKey} on the ${tabNumber} tab|window to ${negate ? 'not ': ''}equal the text ${expectedText}.`
         })
     }
 )

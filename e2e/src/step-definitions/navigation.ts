@@ -14,7 +14,10 @@ Given(
         } = this
         logger.log(`I am on the ${pageId} page`)
         await navigateToPage(page, pageId, globalConfig)
-        await waitFor(() => currentPageMatchesPageId(page, pageId, globalConfig))
+        await waitFor(() => currentPageMatchesPageId(page, pageId, globalConfig), globalConfig, {
+            target: pageId,
+            type: 'page',
+        })
     }
 )
 
@@ -26,7 +29,10 @@ Given(
             globalConfig,
         } = this
         logger.log(`I am directed to the ${pageId} page`)
-        await waitFor(() => currentPageMatchesPageId(page, pageId, globalConfig))
+        await waitFor(() => currentPageMatchesPageId(page, pageId, globalConfig), globalConfig, {
+            target: pageId,
+            type: 'page',
+        })
     }
 )
 
@@ -39,8 +45,10 @@ Given(
         } = this
         logger.log(`I refresh the ${pageId} page`)
         await reloadPage(page)
-        await waitFor(() => currentPageMatchesPageId(page, pageId, globalConfig), {
-            timeout: 30000,
+        await waitFor(() => currentPageMatchesPageId(page, pageId, globalConfig), globalConfig, {
+            target: pageId,
+            type: 'page',
+            timeout: 30000
         })
     }
 )

@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import { env, getJsonFromFile } from './env/parseEnv'
-import { HostConfig, GlobalConfig, PagesConfig, EmailsConfig, PageElementMappings } from './env/global'
+import { HostConfig, GlobalConfig, PagesConfig, EmailsConfig, PageElementMappings, ErrorsConfig } from './env/global'
 import * as fs from 'fs'
 import { generateCucumberRuntimeTag } from './support/tag-helper'
 
@@ -14,6 +14,7 @@ dotenv.config({ path: `${env('ENV_PATH')}${environment}.env`})
 const hostsConfig: HostConfig = getJsonFromFile(env('HOSTS_URLS_PATH'))
 const pagesConfig: PagesConfig = getJsonFromFile(env('PAGE_URLS_PATH'))
 const emailsConfig: EmailsConfig = getJsonFromFile(env('EMAILS_URLS_PATH'))
+const errorsConfig: ErrorsConfig = getJsonFromFile(env('ERRORS_URLS_PATH'))
 const mappingFiles = fs.readdirSync(`${process.cwd()}${env('PAGE_ELEMENTS_PATH')}`)
 
 const getEnvList = (): string[] => {
@@ -36,9 +37,9 @@ const pageElementMappings: PageElementMappings = mappingFiles.reduce((pageElemen
 const worldParameters: GlobalConfig = {
     hostsConfig,
     pagesConfig,
+    errorsConfig,
     emailsConfig,
     pageElementMappings
-    
 }
 
 

@@ -2,7 +2,7 @@ import { Then } from '@cucumber/cucumber'
 import { ElementKey } from '../../env/global'
 import { getElementLocator } from '../../support/web-element-helper'
 import { ScenarioWorld } from '../setup/world'
-import { waitFor, waitForSelector } from '../../support/wait-for-behavior'
+import { waitFor, waitForResult, waitForSelector } from '../../support/wait-for-behavior'
 import { logger } from '../../logger'
 import { getElementText } from '../../support/html-behavior'
 
@@ -23,11 +23,20 @@ Then(
             const elementStable = await waitForSelector(page, elementIdentifier)
             if (elementStable) {
                 const elementText = await getElementText(page, elementIdentifier)
-                return (elementText === globalVariables[variableKey]) === !negate
+                if ((elementText === globalVariables[variableKey]) === !negate) {
+                    return waitForResult.PASS
+                } else {
+                    return waitForResult.FAIL
+                }
             } else {
-                return elementStable
+                return waitForResult.ELEMENT_NOT_AVAILABLE
             }
             
+        },
+        globalConfig,
+        { 
+            target: elementKey,
+            failureMessage: `💣 Expected ${elementKey} to ${negate ? 'not ': ''}equal the ${globalVariables[variableKey]} stored in global variables.`
         })
     }
 )
@@ -48,10 +57,19 @@ Then(
             const elementStable = await waitForSelector(page, elementIdentifier)
             if (elementStable) {
                 const elementText = await getElementText(page, elementIdentifier)
-                return (elementText?.includes(globalVariables[variableKey])) === !negate
+                if ((elementText?.includes(globalVariables[variableKey])) === !negate) {
+                    return waitForResult.PASS
+                } else {
+                    return waitForResult.FAIL
+                }
             } else {
-                return elementStable
+                return waitForResult.ELEMENT_NOT_AVAILABLE
             }
+        },
+        globalConfig,
+        { 
+            target: elementKey,
+            failureMessage: `💣 Expected ${elementKey} to ${negate ? 'not ': ''}contain the ${globalVariables[variableKey]} stored in global variables.`
         })
 
     }
