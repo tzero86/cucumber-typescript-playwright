@@ -3,7 +3,7 @@ import { ElementKey } from '../../env/global'
 import { getElementLocator } from '../../support/web-element-helper'
 import { ScenarioWorld } from '../setup/world'
 import { waitFor, waitForSelector } from '../../support/wait-for-behavior'
-import { getAttributeText, getElementText, getValue, elementEnabled, getElementTextAtIndex } from '../../support/html-behavior'
+import { getAttributeText, getElementText, getElementValue, elementEnabled, getElementTextAtIndex } from '../../support/html-behavior'
 import { logger } from '../../logger'
 
 
@@ -66,7 +66,7 @@ Then(
         await waitFor(async () => {
             const elementStable = await waitForSelector(page, elementIdentifier)
             if(elementStable) {
-                const elementAttribute = await getValue(page, elementIdentifier)
+                const elementAttribute = await getElementValue(page, elementIdentifier)
                 return elementAttribute?.includes(elementValue) === !negate
             } else {
                 return elementStable
@@ -88,7 +88,7 @@ Then(
         await waitFor(async () => {
             const elementStable = await waitForSelector(page, elementIdentifier)
             if(elementStable) {
-                const elementAttribute = await getValue(page, elementIdentifier)
+                const elementAttribute = await getElementValue(page, elementIdentifier)
                 return elementAttribute === elementValue === !negate
             } else {
                 return elementStable

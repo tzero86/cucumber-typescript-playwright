@@ -27,7 +27,7 @@ export const clickElement = async (
  * @param {string} input - The input parameter is a string that represents the text that needs to be
  * entered into the specified element on the web page.
  */
-export const inputValue = async (
+export const inputElementValue = async (
     page: Page,
     elementIdentifier: ElementLocator,
     input: string
@@ -44,7 +44,7 @@ export const inputValue = async (
  * used to identify the element on which the selectValue function will be performed.
  * @param {string} option - The value of the option that needs to be selected from the dropdown list.
  */
-export const selectValue = async (
+export const selectElementValue = async (
     page: Page,
     elementIdentifier: ElementLocator,
     option: string
@@ -98,11 +98,10 @@ export const uncheckElement = async (
  * string value is the `value` property of the HTMLSelectElement identified by the `elementIdentifier`
  * parameter. If the element is not found, the function returns null.
  */
-export const getValue = async (
+export const getElementValue = async (
     page: Page,
     elementIdentifier: ElementLocator
 ): Promise<string | null> => {
-    await page.waitForSelector(elementIdentifier);
     const value = await page.$eval<string, HTMLSelectElement>(
         elementIdentifier,
         (el) => {
@@ -111,6 +110,8 @@ export const getValue = async (
     );
     return value;
 };
+
+
 
 /**
  * This TypeScript function returns the content frame of an iframe element identified by a given
@@ -125,11 +126,12 @@ export const getIframeElement = async (
     page: Page,
     iframeIdentifier: ElementLocator
 ): Promise<Frame | undefined | null> => {
-    await page.waitForSelector(iframeIdentifier);
     const elementHandle = await page.$(iframeIdentifier);
     const elementIframe = await elementHandle?.contentFrame();
     return elementIframe;
 };
+
+
 
 /**
  * This TypeScript function inputs a given value into a specified element within an iframe.
@@ -226,14 +228,13 @@ export const getAttributeText = async (
  * represents a CSS selector, XPath expression, or a function that returns a DOM element. It is used to
  * locate the element on the web page that needs to be scrolled into view.
  */
-export const scrollIntoView = async (
+export const scrollElementIntoView = async (
     page: Page,
     elementIdentifier: ElementLocator
 ): Promise<void> => {
     const element = page.locator(elementIdentifier);
     await element.scrollIntoViewIfNeeded();
 };
-
 
 /**
  * This TypeScript function checks if a given element on a web page is checked or not and returns a
@@ -248,13 +249,11 @@ export const scrollIntoView = async (
  */
 export const elementChecked = async (
     page: Page,
-    elementIdentifier: ElementLocator,
-): Promise<boolean>  => {
-    const checked = await page.isChecked(elementIdentifier)
-    return checked
-
-}
-
+    elementIdentifier: ElementLocator
+): Promise<boolean> => {
+    const checked = await page.isChecked(elementIdentifier);
+    return checked;
+};
 
 /**
  * This TypeScript function retrieves the text content of a specified element on a web page.
@@ -267,14 +266,13 @@ export const elementChecked = async (
  * the element identified by the provided element locator, while the null value is returned if the
  * element is not found on the page.
  */
-export const getElementText =  async (
+export const getElementText = async (
     page: Page,
     elementIdentifier: ElementLocator
 ): Promise<string | null> => {
-    const elementText = await page.textContent(elementIdentifier)
-    return elementText
-}
-
+    const elementText = await page.textContent(elementIdentifier);
+    return elementText;
+};
 
 /**
  * This TypeScript function checks if a specified element on a web page is enabled or not.
@@ -291,10 +289,9 @@ export const elementEnabled = async (
     page: Page,
     elementIdentifier: ElementLocator
 ): Promise<boolean> => {
-    const elementEnabled = await page.isEnabled(elementIdentifier)
-    return elementEnabled
-}
-
+    const elementEnabled = await page.isEnabled(elementIdentifier);
+    return elementEnabled;
+};
 
 /**
  * This TypeScript function returns the text content of an element at a specified position on a web
@@ -315,12 +312,12 @@ export const getElementTextAtIndex = async (
     page: Page,
     elementIdentifier: ElementLocator,
     index: number
-): Promise<string|null> => {
-    const elementTextAtIndex = await page.textContent(`${elementIdentifier}>>nth=${index}`)
-    return elementTextAtIndex
-}
-
-
+): Promise<string | null> => {
+    const elementTextAtIndex = await page.textContent(
+        `${elementIdentifier}>>nth=${index}`
+    );
+    return elementTextAtIndex;
+};
 
 /**
  * This TypeScript function returns an element handle for a given element identifier on a web page.
@@ -335,12 +332,11 @@ export const getElementTextAtIndex = async (
  */
 export const getElement = async (
     page: Page,
-    elementIdentifier: ElementLocator,
+    elementIdentifier: ElementLocator
 ): Promise<ElementHandle<SVGElement | HTMLElement> | null> => {
-    const element = await page.$(elementIdentifier)
-    return element
-}
-
+    const element = await page.$(elementIdentifier);
+    return element;
+};
 
 /**
  * This TypeScript function returns an element at a specified index on a web page.
@@ -360,12 +356,9 @@ export const getElementAtIndex = async (
     elementIdentifier: ElementLocator,
     index: number
 ): Promise<ElementHandle<SVGElement | HTMLElement> | null> => {
-    const elementAtIndex = await page.$(`${elementIdentifier}>>nth=${index}`)
-    return elementAtIndex
-}
-
-
-
+    const elementAtIndex = await page.$(`${elementIdentifier}>>nth=${index}`);
+    return elementAtIndex;
+};
 
 /**
  * This TypeScript function returns an array of SVG or HTML elements identified by a given locator on a
@@ -382,11 +375,9 @@ export const getElements = async (
     page: Page,
     elementIdentifier: ElementLocator
 ): Promise<ElementHandle<SVGElement | HTMLElement>[]> => {
-    const elements = await page.$$(elementIdentifier)
-    return elements
-}
-
-
+    const elements = await page.$$(elementIdentifier);
+    return elements;
+};
 
 /**
  * This TypeScript function returns a promise that resolves to an element handle within an iframe based
@@ -402,14 +393,11 @@ export const getElements = async (
  */
 export const getElementWithinIframe = async (
     elementIframe: Frame,
-    elementIdentifier: ElementLocator,
-
+    elementIdentifier: ElementLocator
 ): Promise<ElementHandle<SVGElement | HTMLElement> | null> => {
-    const visibleOnIframeElement = await elementIframe?.$(elementIdentifier)
-    return visibleOnIframeElement
-}
-
-
+    const visibleOnIframeElement = await elementIframe?.$(elementIdentifier);
+    return visibleOnIframeElement;
+};
 
 /**
  * This TypeScript function retrieves the text content of an element within an iframe.
@@ -424,13 +412,13 @@ export const getElementWithinIframe = async (
  */
 export const getTextWithinIframeElement = async (
     elementIframe: Frame,
-    elementIdentifier: ElementLocator,
+    elementIdentifier: ElementLocator
 ): Promise<string | null> => {
-    const textWithinIframeElement = await elementIframe?.textContent(elementIdentifier)
-    return textWithinIframeElement
-}
-
-
+    const textWithinIframeElement = await elementIframe?.textContent(
+        elementIdentifier
+    );
+    return textWithinIframeElement;
+};
 
 /**
  * This TypeScript function returns the title of a specific page within an array of pages.
@@ -447,13 +435,11 @@ export const getTextWithinIframeElement = async (
 export const getTitleWithinPage = async (
     page: Page,
     pages: Page[],
-    pageIndex: number,
+    pageIndex: number
 ): Promise<string | null> => {
-    const titleWithinPage = await pages[pageIndex].title()
-    return titleWithinPage
-}
-
-
+    const titleWithinPage = await pages[pageIndex].title();
+    return titleWithinPage;
+};
 
 /**
  * This TypeScript function returns an element handle on a specific page based on an element
@@ -474,13 +460,11 @@ export const getElementOnPage = async (
     page: Page,
     elementIdentifier: ElementLocator,
     pages: Page[],
-    pageIndex: number,
+    pageIndex: number
 ): Promise<ElementHandle<SVGElement | HTMLElement> | null> => {
-    const elementOnPage = await pages[pageIndex].$(elementIdentifier)
-    return elementOnPage
-}
-
-
+    const elementOnPage = await pages[pageIndex].$(elementIdentifier);
+    return elementOnPage;
+};
 
 /**
  * This function retrieves the text content of a specified element on a given page.
@@ -496,17 +480,17 @@ export const getElementOnPage = async (
  * the element identified by the `elementIdentifier` parameter within the page specified by the
  * `pageIndex` parameter. If the element is not found, the function returns null.
  */
-export const  getElementTextWithinPage = async (
+export const getElementTextWithinPage = async (
     page: Page,
     elementIdentifier: ElementLocator,
     pages: Page[],
-    pageIndex: number,
+    pageIndex: number
 ): Promise<string | null> => {
-    const elementTextWithinPage = await pages[pageIndex].textContent(elementIdentifier)
-    return elementTextWithinPage
-}
-
-
+    const elementTextWithinPage = await pages[pageIndex].textContent(
+        elementIdentifier
+    );
+    return elementTextWithinPage;
+};
 
 /**
  * This function retrieves table data from a web page and returns it as a JSON string.
@@ -520,17 +504,16 @@ export const  getElementTextWithinPage = async (
  */
 export const getTableData = async (
     page: Page,
-    elementIdentifier: ElementLocator,
+    elementIdentifier: ElementLocator
 ): Promise<string> => {
-    const table = await page.$$eval(elementIdentifier+" tbody tr", (rows) => {
+    const table = await page.$$eval(elementIdentifier + " tbody tr", (rows) => {
         return rows.map((row) => {
-            const cells = row.querySelectorAll('td')
-            return Array.from(cells).map(cell => cell.textContent)
-        })
-    })
-    return JSON.stringify(table)
-}
-
+            const cells = row.querySelectorAll("td");
+            return Array.from(cells).map((cell) => cell.textContent);
+        });
+    });
+    return JSON.stringify(table);
+};
 
 /**
  * This TypeScript function retrieves table headers from a web page using a given element identifier.
@@ -541,14 +524,22 @@ export const getTableData = async (
  */
 export const getTableHeaders = async (
     page: Page,
-    elementIdentifier: ElementLocator,
+    elementIdentifier: ElementLocator
 ): Promise<string> => {
-    const headers = await page.$$eval(elementIdentifier+" thead", (headers) => {
-        return headers.map((header) => {
-            const headers = header.querySelectorAll('th')
-            return Array.from(headers).map(header => header.textContent?.replace(/[\u200B-\u200D\uFEFF]/g, '').replace(/\s+/g, ' ').trim().normalize('NFC'))
-
-        })
-    })
-    return JSON.stringify(headers)
-}
+    const headers = await page.$$eval(
+        elementIdentifier + " thead",
+        (headers) => {
+            return headers.map((header) => {
+                const headers = header.querySelectorAll("th");
+                return Array.from(headers).map((header) =>
+                    header.textContent
+                        ?.replace(/[\u200B-\u200D\uFEFF]/g, "")
+                        .replace(/\s+/g, " ")
+                        .trim()
+                        .normalize("NFC")
+                );
+            });
+        }
+    );
+    return JSON.stringify(headers);
+};
