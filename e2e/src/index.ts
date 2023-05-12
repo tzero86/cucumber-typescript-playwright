@@ -20,7 +20,7 @@ const mappingFiles = fs.readdirSync(`${process.cwd()}${env('PAGE_ELEMENTS_PATH')
 const getEnvList = (): string[] => {
     const envList = Object.keys(hostsConfig)
     if (envList.length === 0) {
-        throw new Error(`No environments found in ${env('HOSTS_URLS_PATH')}`)
+        throw Error(`💣 No environments found in ${env('HOSTS_URLS_PATH')}`)
     }
     return envList
 }

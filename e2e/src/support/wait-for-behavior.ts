@@ -36,11 +36,11 @@ export const waitFor = async <T>(
 
     predicate: () => waitForResult | Promise<waitForResult> | waitForResultWithContext | Promise<waitForResultWithContext>,
     globalConfig: GlobalConfig,
-    options?: { timeout?: number; wait?: number, target?: WaitForTarget, type?: WaitForTargetType, failureMessage?: string}
+    options?: { timeout?: number; wait?: number; target?: WaitForTarget; type?: WaitForTargetType; failureMessage?: string}
 
 ): Promise<void> => {
 
-    const { timeout= 20000, wait= 2000, target = '', type = 'element'} = options || {}
+    const { timeout= 10000, wait= 2000, target = '', type = 'element'} = options || {}
     const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
     const startDate = new Date()
     let notAvailableContext: string | undefined
@@ -60,13 +60,13 @@ export const waitFor = async <T>(
             if (resultAs === waitForResult.PASS) {
                 return
             } else if (resultAs === waitForResult.FAIL) {
-                throw new Error(options?.failureMessage || `Test Assertion has failed.`)
+                throw new Error(options?.failureMessage || "Test Assertion has failed.")
             }
     
             await sleep(wait)
-            logger.debug(`Waiting for ${wait}ms`)
+            logger.debug(`🕓 Waiting for ${wait}ms`)
         }
-        throw new Error(`Wait time of ${timeout}ms for ${notAvailableContext || target} has been exceeded.`)
+        throw new Error(`Wait time of ${timeout}ms for ${notAvailableContext || target} exceeded`);
     } catch (error) {
         handleError(globalConfig.errorsConfig, error as Error, target, type)
     }
@@ -97,7 +97,7 @@ export const waitForSelector = async (
             timeout: envNumber('SELECTOR_TIMEOUT'),
         })
         return true
-    } catch (error) {
+    } catch (e) {
         return false
     }
 }
@@ -128,7 +128,7 @@ export const waitForSelectorOnPage = async (
             timeout: envNumber('SELECTOR_TIMEOUT'),
         })
         return true
-    } catch (error) {
+    } catch (e) {
         return false
     }
 }
@@ -145,7 +145,7 @@ export const waitForSelectorOnPage = async (
  * the function returns `true`. If the selector is not found within the specified timeout or an error
  * occurs, the function returns `false`.
  */
-export const waitForSelectInIframe = async (
+export const waitForSelectorInIframe = async (
     elementIframe: Frame,
     elementIdentifier: ElementLocator,
 ): Promise<boolean> => {
@@ -155,7 +155,7 @@ export const waitForSelectInIframe = async (
             timeout: envNumber('SELECTOR_TIMEOUT'),
         })
         return true
-    } catch (error) {
+    } catch (e) {
         return false
     }
 }

@@ -1,10 +1,10 @@
 [
     {
-        "originalErrorMessageRegexString": "Wait time of [0-9]+ms for [a-zA-Z0-9]+exceeded",
-        "parsedErrorMsg": "💣 Timed out waiting for '{}' <>"
+        "originalErrorMsgRegexString": "Wait time of [0-9]+ms for [a-zA-Z0-9 ]+exceeded",
+        "parsedErrorMsg": "💣 Timed out waiting for the '{}' <>"
     },
     {
-        "originalErrorMessageRegexString": "Cannot read properties of undefined (.*)",
+        "originalErrorMsgRegexString": "Cannot read properties of undefined (.*)",
         "parsedErrorMsg": "💣 Unable to find the '{}' <> mapping."
     }
 ]

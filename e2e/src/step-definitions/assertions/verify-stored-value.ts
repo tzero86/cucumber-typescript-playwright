@@ -16,14 +16,18 @@ Then(
             globalConfig,
             globalVariables
         } = this
+
         logger.log(`The ${elementKey} should ${negate ? 'not ': ''}equal the ${globalVariables[variableKey]} stored in global variables`)
+
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {
             const elementStable = await waitForSelector(page, elementIdentifier)
+            const variableValue = globalVariables[variableKey]
+
             if (elementStable) {
                 const elementText = await getElementText(page, elementIdentifier)
-                if ((elementText === globalVariables[variableKey]) === !negate) {
+                if ((elementText === variableValue) === !negate) {
                     return waitForResult.PASS
                 } else {
                     return waitForResult.FAIL
@@ -50,14 +54,17 @@ Then(
             globalConfig,
             globalVariables
         } = this
+
         logger.log(`The ${elementKey} should ${negate ? 'not ': ''}contain the ${globalVariables[variableKey]} stored in global variables`)
+
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {
             const elementStable = await waitForSelector(page, elementIdentifier)
+            const variableValue = globalVariables[variableKey]
             if (elementStable) {
                 const elementText = await getElementText(page, elementIdentifier)
-                if ((elementText?.includes(globalVariables[variableKey])) === !negate) {
+                if ((elementText?.includes(variableValue)) === !negate) {
                     return waitForResult.PASS
                 } else {
                     return waitForResult.FAIL

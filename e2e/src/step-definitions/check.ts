@@ -16,7 +16,8 @@ Then(
             globalConfig,
         } = this
 
-        logger.log(`☑️ I ${unchecked?'uncheck ':'check'} the ${elementKey} check box|radio button|switch`)
+        logger.log(`I ${unchecked?'uncheck ':'check'} the ${elementKey} check box|radio button|switch`)
+        
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {

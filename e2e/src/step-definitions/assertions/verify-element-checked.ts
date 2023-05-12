@@ -15,17 +15,21 @@ Then(
             globalConfig,
         } = this
 
-        logger.log(`☑️ The ${elementKey} check box|radio button|switch should ${negate ? 'not ': ''}be checked`)
+        logger.log(`The ${elementKey} check box|radio button|switch should ${negate ? 'not ': ''}be checked`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
+        
         await waitFor(async () => {
             const elementStable = await waitForSelector(page, elementIdentifier)
+
             if (elementStable) {
                 const isElementChecked = await elementChecked(page, elementIdentifier)
+
                 if (isElementChecked === !negate) {
                     return waitForResult.PASS
                 } else {
                     return waitForResult.FAIL
                 }
+                
             } else {
                 return waitForResult.ELEMENT_NOT_AVAILABLE
             }

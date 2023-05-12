@@ -24,8 +24,8 @@ Then(
 
             if (elementStable) {
                 const tableData = await getTableData(page, elementIdentifier)
-                logger.log('dataBefore: ', tableData)
-                logger.log('dataTable: ', JSON.stringify(dataTable.raw()))
+                logger.debug('dataBefore: ', tableData)
+                logger.debug('dataTable: ', JSON.stringify(dataTable.raw()))
                 if (tableData === JSON.stringify(dataTable.raw()) === !negate) {
                     return waitForResult.PASS
                 } else {
@@ -38,7 +38,7 @@ Then(
         globalConfig,
         { 
             target: elementKey,
-            failureMessage: `💣 Expected ${elementKey} table to ${negate ? 'not ': ''}equal the following: ${dataTable}`
+            failureMessage: `💣 Expected ${elementKey} table to ${negate ? 'not ': ''}equal the following: ${dataTable.raw()}`
         })
 
     }

@@ -15,7 +15,7 @@ Then(
             screen: { page },
             globalConfig
         } = this
-        logger.log(`${'👁️ '} The ${elementKey} should ${negate ? 'not ': ''}be displayed`)
+        logger.log(`The ${elementKey} should ${negate ? 'not ': ''}be displayed`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         
         await waitFor(async () => {
@@ -44,7 +44,7 @@ Then(
             globalConfig
         } = this
 
-        logger.log(`👁️  The ${elementPosition} ${elementKey} should ${negate ? 'not ': ''}be displayed`)
+        logger.log(`The ${elementPosition} ${elementKey} should ${negate ? 'not ': ''}be displayed`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
         const index = Number(elementPosition.match(/\d/g)?.join('')) - 1
 
@@ -72,7 +72,7 @@ Then(
             globalConfig
         } = this
 
-        logger.log(`👁️ I should ${negate ? 'not ': ''}see ${expectedCount} ${elementKey} displayed`)
+        logger.log(`I should ${negate ? 'not ': ''}see ${expectedCount} ${elementKey} displayed`)
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
         await waitFor(async () => {

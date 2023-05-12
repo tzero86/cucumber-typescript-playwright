@@ -10,7 +10,7 @@ const LOG_LEVELS = [DEBUG, LOG, ERROR, OFF] as const
 
 export type LogLevel = typeof LOG_LEVELS[number]
 
-type LogFunction = (...args: any[]) => void
+type LogFunction = (...msg: any[]) => void
 
 type Logger = {
     debug: LogFunction
@@ -18,7 +18,8 @@ type Logger = {
     error: LogFunction
 }
 
-const logFuncAtLevels = (logLevels: LogLevel[], logFunction: Logger = console) =>
+const logFuncAtLevels = 
+(logLevels: LogLevel[], logFunction: Logger = console) =>
     (logLevel: LogLevel, ...msg: any[]) => {
         if(logLevel !== OFF && logLevels.indexOf(logLevel) !== -1 && msg.length > 0) {
             logFunction[logLevel](...msg)

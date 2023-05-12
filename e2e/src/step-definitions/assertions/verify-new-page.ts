@@ -18,13 +18,14 @@ Then(
         } = this
 
         logger.log(`the ${elementPosition} tab|window should${negate ? " not" : ""} contain the title ${expectedTitle}`)
+
         const pageIndex = Number(elementPosition.match(/\d/g)?.join("")) - 1
         await page.waitForTimeout(NEW_TAB_TIMEOUT)
 
         await waitFor(async () => {
             let pages = context.pages()
             const pageTitle = await getTitleWithinPage(page, pages, pageIndex)
-            if (pageTitle?.includes(expectedTitle) !== negate) {
+            if (pageTitle?.includes(expectedTitle) === !negate) {
                 return waitForResult.PASS
             } else {
                 return waitForResult.ELEMENT_NOT_AVAILABLE
@@ -50,7 +51,7 @@ Then(
         logger.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} be displayed`)
 
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
-        await page.waitForTimeout(NEW_TAB_TIMEOUT)
+        //await page.waitForTimeout(NEW_TAB_TIMEOUT)
 
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
@@ -74,16 +75,16 @@ Then(
 
 Then(
     /^the "([^"]*)" on the "([0-9]+th|[0-9]+st|[0-9]+nd|[0-9]+rd)" (?:tab|window) should( not)? contain the text "(.*)"$/,
-    async function (this: ScenarioWorld, elementKey: ElementKey, tabNumber: ElementKey, negate: boolean, expectedText: string) {
+    async function (this: ScenarioWorld, elementKey: ElementKey, tabNumber: ElementKey, negate: boolean, expectedElementText: string) {
         const {
             screen: {page, context},
             globalConfig
         } = this
 
-        logger.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} contain the text ${expectedText}`)
+        logger.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} contain the text ${expectedElementText}`)
 
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
-        await page.waitForTimeout(NEW_TAB_TIMEOUT)
+        //await page.waitForTimeout(NEW_TAB_TIMEOUT)
 
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
@@ -94,7 +95,7 @@ Then(
             
             if (elementStable) {
                 const elementText = await getElementTextWithinPage(page, elementIdentifier, pages, pageIndex)
-                if (elementText?.includes(expectedText) === !negate) {
+                if (elementText?.includes(expectedElementText) === !negate) {
                     return waitForResult.PASS
                 } else {
                     return waitForResult.FAIL
@@ -106,7 +107,7 @@ Then(
         globalConfig,
         { 
             target: elementKey,
-            failureMessage: `💣 Expected ${elementKey} on the ${tabNumber} tab|window to ${negate ? 'not ': ''}contain the text ${expectedText}.`
+            failureMessage: `💣 Expected ${elementKey} on the ${tabNumber} tab|window to ${negate ? 'not ': ''}contain the text ${expectedElementText}.`
         })
     }
 )
@@ -122,7 +123,7 @@ Then(
         logger.log(`the ${elementKey} on the ${tabNumber} tab|window should${negate ? " not" : ""} equal the text ${expectedText}`)
 
         const pageIndex = Number(tabNumber.match(/\d/g)?.join("")) - 1
-        await page.waitForTimeout(NEW_TAB_TIMEOUT)
+        //await page.waitForTimeout(NEW_TAB_TIMEOUT)
 
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
 
@@ -133,7 +134,7 @@ Then(
 
             if (elementStable) {
                 const elementText = await getElementTextWithinPage(page, elementIdentifier, pages, pageIndex)
-                if (elementText === expectedText === !negate) {
+                if ((elementText === expectedText) === !negate) {
                     return waitForResult.PASS
                 } else {
                     return waitForResult.FAIL

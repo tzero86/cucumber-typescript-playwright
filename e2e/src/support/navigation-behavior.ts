@@ -40,9 +40,8 @@ export const currentPageMatchesPageId = (
     const { pathname: currentPath} = new URL(page.url())
     if (pathMatchesPageId(currentPath, pageId, globalConfig)) {
         return waitForResult.PASS
-    } else {
-        return waitForResult.ELEMENT_NOT_AVAILABLE
     }
+    return waitForResult.ELEMENT_NOT_AVAILABLE
 }
 
 

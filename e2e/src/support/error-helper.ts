@@ -2,8 +2,8 @@ import { ErrorsConfig, WaitForTarget, WaitForTargetType } from "../env/global"
 import { logger } from "../logger"
 
 
-export const getErrorSummary = (errorDetail: string): string => {
-    return errorDetail.split('\n')[0]
+export const getErrorSummary = (errDetail: string): string => {
+    return errDetail.split('\n')[0]
 }
 
 
@@ -33,12 +33,13 @@ export const handleError = (
     const targetName = target ?? ''
     const targetType = type ?? ''
 
-    if(!errList || !errorSummary) {
+    if (!errList || !errorSummary) {
         logger.error(errorDetail)
         throw new Error(errorDetail)
     }
 
     const parsedErrorMessage = parseErrorMessage(errList, errorSummary, targetName, targetType)
+    
     logger.error(parsedErrorMessage)
     throw new Error(parsedErrorMessage)
 }

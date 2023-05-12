@@ -27,7 +27,7 @@ export const getElementLocator = (
     const currentPage = getCurrentPageId(page, globalConfig)
     const elementIdentifier = pageElementMappings[currentPage]?.[elementKey] || pageElementMappings.common?.[elementKey]
     if(!elementIdentifier) {
-        throw new Error(`Unable to Find the ${elementKey} mapping on the ${currentPage} page.`)
+        throw Error(`💣 Unable to Find the ${elementKey} mapping on the ${currentPage} page.`)
     }
     return elementIdentifier
 }
