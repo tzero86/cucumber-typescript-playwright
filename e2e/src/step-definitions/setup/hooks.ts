@@ -14,6 +14,7 @@ Before(async function (this: ScenarioWorld, scenario) {
         viewport: getViewPort(),
         ignoreHTTPSErrors: true,
         recordVideo: {
+            video: 'retain-on-failure',
             dir: `${env('VIDEO_PATH')}${scenario.pickle.name}`,
         }
     }
