@@ -52,7 +52,7 @@ export const stringIsOfOptions = <T extends string>(logLevel:string, options: re
     if(logLevelIsT(logLevel, options)) {
         return logLevel as T
     }
-    throw new Error(`Invalid log level: ${logLevel}. It needs to be one of ${options.join(', ')}`)
+    throw new Error(`💣 Invalid log level: ${logLevel}. It needs to be one of ${options.join(', ')}`)
 }
 
 
