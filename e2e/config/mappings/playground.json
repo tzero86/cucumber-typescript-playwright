@@ -54,5 +54,7 @@
     "age": "[name='age']",
     "email": "[data-id='email']",
     "password": "[data-id='password']",
-    "email error": "[data-id='email-error']"
+    "email error": "[data-id='email-error']",
+    "full name": "[data-id='full-name']",
+    "rest api": "[data-id='rest-api']"
 }

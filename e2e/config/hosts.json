@@ -1,4 +1,5 @@
 {
     "localhost": "http://localhost:3000",
-    "production": "http://hub.testingtalks.com.au"
+    "production": "http://hub.testingtalks.com.au",
+    "api" : "https://jsonplaceholder.typicode.com/"
 }

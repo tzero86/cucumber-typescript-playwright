@@ -1,6 +1,9 @@
 import dotenv from 'dotenv'
 import { env, getJsonFromFile } from './env/parseEnv'
-import { HostConfig, GlobalConfig, PagesConfig, EmailsConfig, PageElementMappings, ErrorsConfig } from './env/global'
+import { 
+    HostConfig, GlobalConfig, PagesConfig, 
+    EmailsConfig, PageElementMappings, MockPayloadMappings,
+    ErrorsConfig, MocksConfig } from './env/global'
 import * as fs from 'fs'
 import { generateCucumberRuntimeTag } from './support/tag-helper'
 
@@ -15,7 +18,10 @@ const hostsConfig: HostConfig = getJsonFromFile(env('HOSTS_URLS_PATH'))
 const pagesConfig: PagesConfig = getJsonFromFile(env('PAGE_URLS_PATH'))
 const emailsConfig: EmailsConfig = getJsonFromFile(env('EMAILS_URLS_PATH'))
 const errorsConfig: ErrorsConfig = getJsonFromFile(env('ERRORS_URLS_PATH'))
+const mocksConfig: MocksConfig = getJsonFromFile(env('MOCKS_URLS_PATH'))
+
 const mappingFiles = fs.readdirSync(`${process.cwd()}${env('PAGE_ELEMENTS_PATH')}`)
+const payloadFiles = fs.readdirSync(`${process.cwd()}${env('MOCK_PAYLOAD_PATH')}`)
 
 const getEnvList = (): string[] => {
     const envList = Object.keys(hostsConfig)
@@ -26,12 +32,21 @@ const getEnvList = (): string[] => {
 }
 
 
-const pageElementMappings: PageElementMappings = mappingFiles.reduce((pageElementConfigAcc, file) => {
-    const key = file.replace('.json', '')
-    const elementMappings = getJsonFromFile(`${env('PAGE_ELEMENTS_PATH')}${file}`)
-    return {...pageElementConfigAcc, [key]: elementMappings}
-}
-, {})
+const pageElementMappings: PageElementMappings = mappingFiles.reduce(
+    (pageElementConfigAcc, file) => {
+        const key = file.replace('.json', '')
+        const elementMappings = getJsonFromFile(`${env('PAGE_ELEMENTS_PATH')}${file}`)
+        return {...pageElementConfigAcc, [key]: elementMappings}
+}, {})
+
+
+const mockPayloadMappings: MockPayloadMappings = payloadFiles.reduce(
+    (payloadConfigAcc, file) => {
+        const key = file.replace('.json', '')
+        const payloadMappings = getJsonFromFile(`${env('MOCK_PAYLOAD_PATH')}${file}`)
+        return {...payloadConfigAcc, [key]: payloadMappings}
+}, {})
+
 
 
 const worldParameters: GlobalConfig = {
@@ -39,7 +54,9 @@ const worldParameters: GlobalConfig = {
     pagesConfig,
     errorsConfig,
     emailsConfig,
-    pageElementMappings
+    mocksConfig,
+    pageElementMappings,
+    mockPayloadMappings,
 }
 
 

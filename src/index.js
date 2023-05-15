@@ -380,7 +380,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Basic REST</span></h6>
+                   <h6><span data-id="rest-api" className="caption-text">Basic REST</span></h6>
                </div>
                <div className="product tumbnail thumbnail-3 rest-name">
                    <BasicREST />
