@@ -44,7 +44,7 @@ Feature: As a user I can interact with login forms
 
 
 
-    @dev
+
     @smoke
     @regression
     Scenario: As a user I am able to input a random email
