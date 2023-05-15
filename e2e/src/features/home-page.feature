@@ -10,7 +10,6 @@ Feature: As a user I Expect to be able to navigate to the home page
 
     
     @regression
-    @smoke
     Scenario: As a user I don't expect to see a contact that does not exist
         Given I am on the "home" page
         And I fill in the "search" input with "funky torino"
