@@ -16,5 +16,6 @@
     "address": "[data-id='address']",
     "edit": "[data-id='edit-button']",
     "delete": "[data-id='delete-button']",
-    "no items message": "[data-id='no-items-message']"
+    "no items message": "[data-id='no-items-message']",
+    "error message": "[data-id='error-message']"
 }

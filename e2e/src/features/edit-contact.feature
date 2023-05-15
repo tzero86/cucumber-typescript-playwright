@@ -6,7 +6,7 @@ Feature: As a user I expect to be able to edit a new contact
         Then I am directed to the "create contact" page
         And the "create contact header" should equal the text "Create Contact"
 
-    @dev
+
     @smoke
     @regression
     Scenario: As a user I can edit a new contact
