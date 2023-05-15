@@ -1,13 +1,13 @@
-import { Then } from "@cucumber/cucumber";
-import { ScenarioWorld } from "./setup/world";
-import { inputElementValue, selectElementValue } from "../support/html-behavior";
-import { waitFor, waitForResult, waitForSelector } from "../support/wait-for-behavior";
-import { getElementLocator } from "../support/web-element-helper";
-import { ElementKey } from "../env/global";
-import { parseInput } from "../support/input-helper";
-import { logger } from "../logger";
-import { stringIsOfOptions } from "../support/options-helper";
-import { RandomInputType, getRandomData, randomInputTypes } from "../support/random-data-helper";
+import { Then } from "@cucumber/cucumber"
+import { ScenarioWorld } from "./setup/world"
+import { inputElementValue, selectElementValue } from "../support/html-behavior"
+import { waitFor, waitForResult, waitForSelector } from "../support/wait-for-behavior"
+import { getElementLocator } from "../support/web-element-helper"
+import { ElementKey } from "../env/global"
+import { parseInput } from "../support/input-helper"
+import { logger } from "../logger"
+import { stringIsOfOptions } from "../support/options-helper"
+import { RandomInputType, getRandomData, randomInputTypes } from "../support/random-data-helper"
 
 Then(
     /^I fill in the "([^"]*)" input with "([^"]*)"$/,
@@ -15,7 +15,7 @@ Then(
         const {
             screen: { page },
             globalConfig,
-        } = this;
+        } = this
 
         logger.log(`I fill in the ${elementKey} input with ${input}`);
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
@@ -40,7 +40,7 @@ Then(
         const {
             screen: { page },
             globalConfig,
-        } = this;
+        } = this
 
         logger.log(
             `I select the ${option} option from the ${elementKey} dropdown`

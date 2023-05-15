@@ -1,5 +1,5 @@
-import { devices } from "playwright";
-import { envNumber } from "../env/parseEnv";
+import { devices } from "playwright"
+import { envNumber } from "../env/parseEnv"
 
 
 /**

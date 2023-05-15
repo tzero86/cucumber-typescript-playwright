@@ -4,6 +4,7 @@ import { waitFor, waitForResult, waitForSelector } from "../support/wait-for-beh
 import { getElementLocator } from "../support/web-element-helper"
 import { ElementKey } from "../env/global"
 import { logger } from "../logger"
+import { getElementText } from "../support/html-behavior"
 
 
 
@@ -23,7 +24,7 @@ Then(
         await waitFor(async () => {
             const elementStable = await waitForSelector(page, elementIdentifier)
             if (elementStable) {
-                const elementText = await page.textContent(elementIdentifier)
+                const elementText = await getElementText(page, elementIdentifier)
                 if(elementText !== null) {
                     globalVariables[variableName] = elementText
                     return waitForResult.PASS

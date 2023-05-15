@@ -1,6 +1,3 @@
-
-
-
 const stringLevelIsT = <T extends string>(string: string, options: readonly string[]): string is T => {
     return options.includes(string)
 }

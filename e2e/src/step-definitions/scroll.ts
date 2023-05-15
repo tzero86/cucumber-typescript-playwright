@@ -1,10 +1,10 @@
-import { Then } from "@cucumber/cucumber";
-import { ScenarioWorld } from "./setup/world";
-import { waitFor, waitForResult, waitForSelector } from "../support/wait-for-behavior";
-import { ElementKey } from "../env/global";
-import { scrollElementIntoView } from "../support/html-behavior";
-import { getElementLocator } from "../support/web-element-helper";
-import { logger } from "../logger";
+import { Then } from "@cucumber/cucumber"
+import { ScenarioWorld } from "./setup/world"
+import { waitFor, waitForResult, waitForSelector } from "../support/wait-for-behavior"
+import { ElementKey } from "../env/global"
+import { scrollElementIntoView } from "../support/html-behavior"
+import { getElementLocator } from "../support/web-element-helper"
+import { logger } from "../logger"
 
 Then(
     /^I scroll to the "([^"]*)"$/,
@@ -12,7 +12,7 @@ Then(
         const {
             screen: { page },
             globalConfig,
-        } = this;
+        } = this
 
         logger.log(`I scroll to the ${elementKey}`);
         const elementIdentifier = getElementLocator(page, elementKey, globalConfig)
