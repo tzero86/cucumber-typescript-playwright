@@ -7,8 +7,8 @@
     "transpile": "rimraf dist && babel --extensions .ts --out-dir dist src",
     "precucumber": "rimraf reports && mkdir reports && echo {} > reports/reports.json",
     "cucumber": "yarn transpile && cucumber-js",
-    "cucumber:localhost" : "yarn cucumber",
-    "cucumber:production" : "yarn cucumber",
+    "cucumber:localhost": "yarn cucumber",
+    "cucumber:production": "yarn cucumber",
     "postcucumber": "ts-node ./src/reporter/cucumber-report.ts"
   },
   "author": "",
@@ -18,6 +18,7 @@
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-typescript": "^7.21.4",
     "@cucumber/cucumber": "^9.1.0",
+    "@faker-js/faker": "^8.0.0",
     "@playwright/test": "^1.32.3",
     "cross-env": "^7.0.3",
     "deep-diff": "^1.0.2",
