@@ -13,6 +13,9 @@ cd e2e
 echo "Yarn install e2e"
 yarn install
 
+echo "Update browsers"
+npx browserslist@latest --update-db -y
+
 echo "Yarn run e2e"
 ./run_tests.sh localhost regression
 
