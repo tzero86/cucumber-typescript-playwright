@@ -28,16 +28,16 @@ export class BasicCheckBox extends React.Component {
         return (
             <>
                 <ThemeProvider theme={theme}>
-                    <Checkbox inputProps={{ "data-id":"blue-radio-button" }}  {...label} sx={{
+                    <Checkbox inputProps={{ "data-id":"blue-radio-button", "aria-label": "blue-radio-button" }}  {...label} sx={{
                         color: blue[800],
                         '&.Mui-checked': {
                             color: blue[600],
                         },
                     }} />
-                    <Checkbox {...label} inputProps={{ "data-id":"purple-radio-button" }} color="secondary" />
-                    <Checkbox {...label} inputProps={{ "data-id":"green-radio-button" }} color="success" />
-                    <Checkbox {...label} inputProps={{ "data-id":"grey-radio-button" }} color="default" />
-                    <Checkbox inputProps={{ "data-id":"red-radio-button" }}
+                    <Checkbox {...label} inputProps={{ "data-id":"purple-radio-button", "aria-label": "purple-radio-button" }} color="secondary" />
+                    <Checkbox {...label} inputProps={{ "data-id":"green-radio-button", "aria-label": "green-radio-button" }}  color="success" />
+                    <Checkbox {...label} inputProps={{ "data-id":"grey-radio-button", "aria-label": "grey-radio-button" }}  color="default" />
+                    <Checkbox inputProps={{ "data-id":"red-radio-button", "aria-label": "red-radio-button" }} 
                         {...label}
                         sx={{
                             color: pink[800],

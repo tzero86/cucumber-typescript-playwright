@@ -110,6 +110,7 @@ class App extends React.Component {
                   className="testing-talks-logo"
                   data-id="header-logo"
                   href="/"
+                  aria-label="Testing Talks Hub"
                 >
                 </a>
               </div>
@@ -181,6 +182,7 @@ class App extends React.Component {
         <Helmet>
             <title>Playground</title>
         </Helmet>
+        <main>
       <div className="Playground">
       <h1 className="playground-header">Playground</h1>
 
@@ -188,7 +190,7 @@ class App extends React.Component {
        <div className="row flow-offset-1">
          <div className="col-xs-6 col-md-4">
              <div className="caption">
-               <h6><span className="caption-text">Radio Button</span></h6>
+               <h2><span className="caption-text">Radio Button</span></h2>
              </div>
            <div className="product tumbnail thumbnail-3">
                 <BasicRadioButton />
@@ -196,7 +198,7 @@ class App extends React.Component {
          </div>
          <div className="col-xs-6 col-md-4">
              <div className="caption">
-               <h6><span className="caption-text">Autocomplete Combo Box</span></h6>
+               <h2><span className="caption-text">Autocomplete Combo Box</span></h2>
              </div>
            <div className="product tumbnail thumbnail-3">
                 <BasicAutoComplete />
@@ -204,7 +206,7 @@ class App extends React.Component {
          </div>
          <div className="col-xs-6 col-md-4">
              <div className="caption">
-               <h6><span className="caption-text">Check Box</span></h6>
+               <h2><span className="caption-text">Check Box</span></h2>
              </div>
              <div className="product tumbnail thumbnail-3">
                   <BasicCheckBox />
@@ -212,7 +214,7 @@ class App extends React.Component {
          </div>
          <div className="col-xs-6 col-md-4">
              <div className="caption">
-                 <h6><span className="caption-text">Card</span></h6>
+                 <h2><span className="caption-text">Card</span></h2>
              </div>
            <div className="product tumbnail thumbnail-3">
                <BasicCard />
@@ -220,7 +222,7 @@ class App extends React.Component {
          </div>
          <div className="col-xs-6 col-md-4">
              <div className="caption">
-                 <h6><span className="caption-text">Switch</span></h6>
+                 <h2><span className="caption-text">Switch</span></h2>
              </div>
            <div className="product tumbnail thumbnail-3">
                 <BasicSwitch />
@@ -228,7 +230,7 @@ class App extends React.Component {
          </div>
          <div className="col-xs-6 col-md-4">
              <div className="caption">
-                 <h6><span className="caption-text">Buttons</span></h6>
+                 <h2><span className="caption-text">Buttons</span></h2>
              </div>
            <div className="product tumbnail thumbnail-3">
                 <BasicButtons />
@@ -236,7 +238,7 @@ class App extends React.Component {
          </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Avatars</span></h6>
+                   <h2><span className="caption-text">Avatars</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicAvatars />
@@ -244,7 +246,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Open Tab</span></h6>
+                   <h2><span className="caption-text">Open Tab</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicTab />
@@ -252,7 +254,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Drop Down Menu</span></h6>
+                   <h2><span className="caption-text">Drop Down Menu</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicMenu />
@@ -260,7 +262,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Text Area</span></h6>
+                   <h2><span className="caption-text">Text Area</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicTextArea />
@@ -268,7 +270,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Table</span></h6>
+                   <h2><span className="caption-text">Table</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicTable />
@@ -276,7 +278,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Tooltip</span></h6>
+                   <h2><span className="caption-text">Tooltip</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicTooltip />
@@ -284,7 +286,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Alert</span></h6>
+                   <h2><span className="caption-text">Alert</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicAlert />
@@ -292,7 +294,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Open Window</span></h6>
+                   <h2><span className="caption-text">Open Window</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicOpenWindow />
@@ -300,7 +302,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Browser Alert</span></h6>
+                   <h2><span className="caption-text">Browser Alert</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicBrowserAlert />
@@ -308,7 +310,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Show / Hide</span></h6>
+                   <h2><span className="caption-text">Show / Hide</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicShowHide />
@@ -316,7 +318,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Select</span></h6>
+                   <h2><span className="caption-text">Select</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicSelect />
@@ -324,7 +326,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Badge</span></h6>
+                   <h2><span className="caption-text">Badge</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicValidation />
@@ -332,7 +334,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">IFrame</span></h6>
+                   <h2><span className="caption-text">IFrame</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicIframe />
@@ -340,7 +342,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Stored Values</span></h6>
+                   <h2><span className="caption-text">Stored Values</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicStoredValues />
@@ -348,7 +350,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Index</span></h6>
+                   <h2><span className="caption-text">Index</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicIndex />
@@ -356,7 +358,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Basic Values</span></h6>
+                   <h2><span className="caption-text">Basic Values</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicValues />
@@ -364,7 +366,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Input Values</span></h6>
+                   <h2><span className="caption-text">Input Values</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicInputValues />
@@ -372,7 +374,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span className="caption-text">Login</span></h6>
+                   <h2><span className="caption-text">Login</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3">
                    <BasicLogin />
@@ -380,7 +382,7 @@ class App extends React.Component {
            </div>
            <div className="col-xs-6 col-md-4">
                <div className="caption">
-                   <h6><span data-id="rest-api" className="caption-text">Basic REST</span></h6>
+                   <h2><span data-id="rest-api" className="caption-text">Basic REST</span></h2>
                </div>
                <div className="product tumbnail thumbnail-3 rest-name">
                    <BasicREST />
@@ -390,6 +392,7 @@ class App extends React.Component {
      </div>
 
       </div>
+      </main>
       </>
     );
   };
