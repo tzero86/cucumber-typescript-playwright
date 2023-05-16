@@ -7,7 +7,6 @@ Feature: As a user I can intercept a REST API and mock the response
         Given I am on the "home" page
         And I click the "playground" button
         When I am directed to the "playground" page
-        And I scroll to the "rest api"
         And the "1st" "full name" should contain the text "Leanne Graham"
 
 
@@ -30,7 +29,6 @@ Feature: As a user I can intercept a REST API and mock the response
         And the "api" endpoint for "users" is mocked with "single user"
         When I click the "playground" button
         And I am directed to the "playground" page
-        And I scroll to the "rest api"
         Then the "1st" "full name" should not contain the text "Leanne Graham"
         And the "1st" "full name" should contain the text "Lady Singleton"
 
@@ -42,7 +40,6 @@ Feature: As a user I can intercept a REST API and mock the response
         And the "api" endpoint for "users" is mocked with "multiple users"
         When I click the "playground" button
         And I am directed to the "playground" page
-        And I scroll to the "rest api"
         Then the "1st" "full name" should contain the text "Todd Smith"
         And the "2nd" "full name" should contain the text "Natalie Ford"
         And the "3rd" "full name" should contain the text "River Wild"
@@ -55,7 +52,6 @@ Feature: As a user I can intercept a REST API and mock the response
         And the "api" endpoint for "users" is mocked with "six users"
         When I click the "playground" button
         And I am directed to the "playground" page
-        And I scroll to the "rest api"
         And the "1st" "full name" should contain the text "Todd Smith"
         And the "2nd" "full name" should contain the text "Natalie Ford"
         And the "3rd" "full name" should contain the text "River Wild"
