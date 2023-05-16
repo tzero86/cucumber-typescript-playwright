@@ -1,5 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/bash
 clear
+
+set -euo pipefail
 
 #cucumber tag
 env=$1
@@ -10,4 +12,7 @@ export COMMON_CONFIG_FILE=env/common.env
 export NODE_ENV=$env
 # run cucumber test & run postcucumber on failure
 
-yarn run cucumber:"$env" --profile "$tag" || yarn run postcucumber
+if ! yarn run cucumber:"$env" --profile "$tag"; then
+    yarn run postcucumber;
+    exit 1;
+fi
