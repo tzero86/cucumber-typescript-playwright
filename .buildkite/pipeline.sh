@@ -11,6 +11,8 @@ function build() {
 steps:
     - name: ":desktop: Automation Suite"
       command: "./scripts/buildkite-automation.sh"
+      artifact_path:
+        - "./e2e/reports/cucumber-html-report.html"
 EOF
 }
 
