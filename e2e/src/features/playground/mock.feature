@@ -11,7 +11,7 @@ Feature: As a user I can intercept a REST API and mock the response
         And the "1st" "full name" should contain the text "Leanne Graham"
 
 
-    @dev
+
     @smoke
     @regression
     Scenario: As a user I can mock no users existing
