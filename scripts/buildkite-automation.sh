@@ -16,6 +16,6 @@ yarn install
 echo "Update browsers"
 npx browserslist@latest --update-db -y
 
-echo "Yarn run e2e"
-./run_tests.sh localhost regression
+echo "Running $AUTOMATION_SUITE automation suite on $AUTOMATION_ENVIRONMENT environment."
+./run_tests.sh "$AUTOMATION_ENVIRONMENT" "$AUTOMATION_SUITE"
 
