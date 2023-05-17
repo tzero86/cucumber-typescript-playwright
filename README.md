@@ -46,3 +46,20 @@ You'll notice several sub-folders depending on the objective of the `.ts` file y
 
 
 
+## API Testing
+
+The repository includes an API testing solution with Playwright API Testing and Playwright HTML Report that works separately from the E2E Automation solution and the sample react app.
+
+To install its dependencies, you can use the following command inside the api_e2e folder:
+
+```bash
+yarn install
+```
+Then to run the API tests, you can use the following command inside the api_e2e folder:
+
+```bash
+yarn run test
+```
+
+The Sample tests for GET, POST, PUT, PATCH, and DELETE can be found inside the `api_e2e/tests` folder. The basic endpoint configuration is located in `api_e2e/playwright.config.ts` and the `api_e2e/tsconfig.json` files. And the report is generated in the `api_e2e/playwright-report` folder.
+
