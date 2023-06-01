@@ -25,7 +25,7 @@ Before(async function (this: ScenarioWorld, scenario) {
 
 After(async function (this: ScenarioWorld, scenario) {
     const {
-        screen: { page, browser }
+        screen: { page, browser, context }
     } = this
     const scenarioStatus = scenario.result?.status
     if (scenarioStatus === 'FAILED') {
@@ -33,6 +33,8 @@ After(async function (this: ScenarioWorld, scenario) {
             path: `${env('SCREENSHOT_PATH')}${scenario.pickle.name}.png`
         })
         await this.attach(screenshot, 'image/png')
+        let traceName = scenario.pickle.name.replace(/ /g, '_')
+        await context.tracing.stop({ path: `${env('TRACING_REPORT_PATH')}${traceName}.zip` })
     }
 
     await browser.close()

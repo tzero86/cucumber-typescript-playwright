@@ -28,7 +28,7 @@ export class ScenarioWorld extends World {
         const browser = await this.newBrowser()
         const context = await browser.newContext(contextOptions)
         const page = await context.newPage()
-
+        await context.tracing.start({ screenshots: true, snapshots: true })
         this.screen = { browser, context, page }
         return this.screen
     }

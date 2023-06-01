@@ -63,3 +63,8 @@ yarn run test
 
 The Sample tests for GET, POST, PUT, PATCH, and DELETE can be found inside the `api_e2e/tests` folder. The basic endpoint configuration is located in `api_e2e/playwright.config.ts` and the `api_e2e/tsconfig.json` files. And the report is generated in the `api_e2e/playwright-report` folder.
 
+
+
+## Updates
+
+- 2023-05-31: Added Playwright tracing reports on failures (see `TRACING_REPORT_PATH='./reports/traces/'` in `e2e/env/common.env`, and `hooks.ts` along with `world.ts` for any tweaks).
